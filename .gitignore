@@ -3,4 +3,5 @@ image
 .vscode
 LICENSE
 README.md
-.Ds
+.DS_Store
+*.o
