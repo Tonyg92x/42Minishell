@@ -1,0 +1,210 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/15 11:38:26 by aguay             #+#    #+#              #
+#    Updated: 2022/06/07 09:26:12 by aguay            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Ici, nous pouvons faire des notes sur les differentes fonctions autorises.
+
+readline : 
+		readline will read a line from the terminal and return it, using prompt as a prompt. If prompt is NULL or the empty string, no prompt is issued. The line returned is allocated with malloc(3); the caller must free it when finished. The line returned has the final newline removed, so only the text of the line remains.
+
+rl_clear_history:
+		Je n'ai pas trouver beaucoup d'information las decu. Je supose que on garde l'historique des commandes pour faire fleche en haut pour revenir sur les commandes precedents et cette fonction clear l'history ?		
+
+rl_on_new_line:
+		
+
+rl_replace_line:
+		
+
+rl_redisplay:
+		
+
+add_history:
+		
+
+wait:
+	A call to wait() blocks the calling process until one of its child processes exits or a signal is received.
+
+waitpid:
+	Suspends the calling process until a child process ends or is stopped. More precisely, waitpid() suspends the calling process until the system gets status information on the child.
+
+wait3:
+	The wait3() function allows the calling process to obtain status information for specified child processes.
+
+	The following call :
+		wait3(stat_loc, options, resource_usage)
+
+	Is equivalent to :
+		waitpid((pid_t)-1, stat_loc, options);
+
+wait4:
+	The wait4() function suspends execution of the calling thread until status information from one of its terminated child processes is available, or until the delivery of a signal whose action is either to terminate the process or execute a signal handler.
+
+signal:
+	The C library function void (*signal(int sig, void (*func)(int)))(int) sets a function to handle signal i.e. a signal handler with signal number sig.  https://www.tutorialspoint.com/c_standard_library/c_function_signal.htm
+
+sigaction:
+	sigaction(sig, act, oact) means “set the disposition for sig to act , and store the old disposition in oact ”. Its return value is 0 or -1, indicating whether the system call errored. Those struct sigaction s are “dispositions”, meaning they express what to do when the given signal is received.
+
+	The sigaction() system call is used to change the action taken by a process on receipt of a specific signal. (See signal(7) for an overview of signals.) signum specifies the signal and can be any valid signal except SIGKILL and SIGSTOP.
+
+sigemptyset:
+	DESCRIPTION         top
+
+       The sigemptyset() function initializes the signal set pointed to
+       by set, such that all signals defined in POSIX.1‐2008 are
+       excluded.
+
+RETURN VALUE         top
+
+       Upon successful completion, sigemptyset() shall return 0;
+       otherwise, it shall return -1 and set errno to indicate the
+       error.
+
+
+sigaddset:
+	Adds a signal to the set of signals already recorded in set.
+
+sigaddset() is part of a family of functions that manipulate signal sets. Signal sets are data objects that let a process keep track of groups of signals. For example, a process can create one signal set to record which signals it is blocking, and another signal set to record which signals are pending. In general, signal sets are used to manipulate groups of signals used by other functions (such as sigprocmask()) or to examine signal sets returned by other functions (such as sigpending()).
+
+Applications should call either sigemptyset() or sigfillset() at least once for each object of type sigset_t prior to any other use of that object. If such an object is not initialized in this way, but is nonetheless supplied as an argument to any of pthread_sigmask(), sigaction(), sigaddset(), sigdelset(), sigismember(), sigpending(), sigprocmask(), sigsuspend(), sigtimedwait(), sigwait(), or sigwaitinfo(), the results are undefined.
+
+kill:
+	The kill() function sends a signal to a process or process group specified by pid. The signal to be sent is specified by sig and is either 0 or one of the signals from the list in the <sys/signal. h> header file. The process sending the signal must have appropriate authority to the receiving process or processes.
+
+
+exit:
+	The C library function void exit(int status) terminates the calling process immediately. Any open file descriptors belonging to the process are closed and any children of the process are inherited by process 1, init, and the process parent is sent a SIGCHLD signal.
+
+getcwd:
+	The getcwd() function places an absolute pathname of the current working directory in the array pointed to by buf, and returns buf. The size argument is the size in bytes of the character array pointed to by the buf argument. If buf is a null pointer, the behaviour of getcwd() is undefined.
+
+chdir:
+	The chdir command is a system function (system call) which is used to change the current working directory. On some systems, this command is used as an alias for the shell command cd. chdir changes the current working directory of the calling process to the directory specified in path.
+
+stat / lstat / fstat :
+	       These functions return information about a file, in the buffer
+       pointed to by statbuf.  No permissions are required on the file
+       itself, but—in the case of stat(), fstatat(), and lstat()—execute
+       (search) permission is required on all of the directories in
+       pathname that lead to the file.
+
+       stat() and fstatat() retrieve information about the file pointed
+       to by pathname; the differences for fstatat() are described
+       below.
+
+       lstat() is identical to stat(), except that if pathname is a
+       symbolic link, then it returns information about the link itself,
+       not the file that the link refers to.
+
+       fstat() is identical to stat(), except that the file about which
+       information is to be retrieved is specified by the file
+       descriptor fd.
+
+unlink:
+	       unlink() deletes a name from the filesystem.  If that name was
+       the last link to a file and no processes have the file open, the
+       file is deleted and the space it was using is made available for
+       reuse.
+
+       If the name was the last link to a file but any processes still
+       have the file open, the file will remain in existence until the
+       last file descriptor referring to it is closed.
+
+       If the name referred to a symbolic link, the link is removed.
+
+       If the name referred to a socket, FIFO, or device, the name for
+       it is removed but processes which have the object open may
+       continue to use it.
+
+opendir:
+	La fonction opendir fait partie de la spécification POSIX et est définie dans le fichier d’en-tête <dirent.h>. La fonction prend un seul argument de pointeur char pour spécifier le nom du répertoire à ouvrir. opendir renvoie la structure DIR* ou NULL si une erreur est rencontrée. Le type de données DIR est implémenté pour représenter le flux d’annuaire, mais l’utilisateur ne doit pas allouer d’objets de type DIR.
+	
+
+readdir:
+	Une fois que le flux du répertoire est ouvert et que nous avons récupéré le DIR * valide, nous pouvons lire chaque entrée en utilisant la fonction readdir. Chaque appel à la fonction readdir renvoie un pointeur vers la structure dirent représentant l’entrée suivante du répertoire. Lorsque la fin du flux du répertoire est atteinte, readdir renvoie NULL.
+
+closedir:
+	       The closedir() function closes the directory stream associated
+       with dirp.  A successful call to closedir() also closes the
+       underlying file descriptor associated with dirp.  The directory
+       stream descriptor dirp is not available after this call.
+
+strerror:
+	The C library function char *strerror(int errnum) searches an internal array for the error number errnum and returns a pointer to an error message string. The error strings produced by strerror depend on the developing platform and compiler.
+
+prerror:
+	The POSIX error function, perror, is used in C and C++ to print an error message to stderr, based on the error state stored in errno.It prints str and an implementation-defined error message corresponding to the global variable errno.
+
+isatty:
+	isatty() is a function that returns 1 if the fd - (file descriptor) refers to a terminal. It comes under the #include #include <unistd.h>
+
+ttyname:
+	       The function ttyname() returns a pointer to the null-terminated
+       pathname of the terminal device that is open on the file
+       descriptor fd, or NULL on error (for example, if fd is not
+       connected to a terminal).  The return value may point to static
+       data, possibly overwritten by the next call.  The function
+       ttyname_r() stores this pathname in the buffer buf of length
+       buflen.
+
+ttyslot:
+	Man this shit
+
+ioctl:
+	       The ioctl() system call manipulates the underlying device
+       parameters of special files.  In particular, many operating
+       characteristics of character special files (e.g., terminals) may
+       be controlled with ioctl() requests.  The argument fd must be an
+       open file descriptor.
+
+       The second argument is a device-dependent request code.  The
+       third argument is an untyped pointer to memory.  It's
+       traditionally char *argp (from the days before void * was valid
+       C), and will be so named for this discussion.
+
+       An ioctl() request has encoded in it whether the argument is an
+       in parameter or out parameter, and the size of the argument argp
+       in bytes.  Macros and defines used in specifying an ioctl()
+       request are located in the file <sys/ioctl.h>.
+
+getenv:
+	The C library function char *getenv(const char *name) searches for the environment string pointed to by name and returns the associated value to the string.
+
+tcsetattr:
+	The tcsetattr() function shall set the parameters associated with the terminal referred to by the open file descriptor fildes (an open file descriptor associated with a terminal) from the termios structure referenced by termios_p as follows: If optional_actions is TCSANOW, the change shall occur immediately.
+
+tcgetattr:
+    The tcgetattr() function shall get the parameters associated with the terminal referred to by fildes and store them in the termios structure referenced by termios_p. The fildes argument is an open file descriptor associated with a terminal.
+
+    The termios_p argument is a pointer to a termios structure.
+
+    The tcgetattr() operation is allowed from any process.
+
+    If the terminal device supports different input and output baud rates, the baud rates stored in the termios structure returned by tcgetattr() shall reflect the actual baud rates, even if they are equal. If differing baud rates are not supported, the rate returned as the output baud rate shall be the actual baud rate. If the terminal device does not support split baud rates, the input baud rate stored in the termios structure shall be the output rate (as one of the symbolic values).
+
+tgetent:
+	The tgetent routine loads the entry for name. It returns 1 on success, 0 if there is no such entry, and -1 if the terminfo database could not be found. The emulation ignores the buffer pointer bp. 
+
+tgetflag:
+	The tgetflag routine gets the boolean entry for id, or zero if it is not available. 
+
+tgetnum:
+	The tgetnum routine gets the numeric entry for id, or -1 if it is not available. 
+
+tgetstr:
+	The tgetstr routine returns the string entry for id, or zero if it is not available. Use tputs to output the returned string. The return value will also be copied to the buffer pointed to by area, and the area value will be updated to point past the null ending this value. 
+
+tgoto:
+	The tgoto routine instantiates the parameters into the given capability. The output from this routine is to be passed to tputs. 
+
+tputs:
+	The tputs routine is described on the curs_terminfo(3X) manual page. It can retrieve capabilities by either termcap or terminfo name. 
