@@ -9,10 +9,10 @@
     <img src="images/42_Logo.svg.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">so_long</h3>
+<h3 align="center">Minishell</h3>
 
   <p align="center">
-    42 Project of 42 cursus
+    42 Home made Shell in c
   </p>
 </div>
 
@@ -36,16 +36,13 @@
 ## About The Project
 
 <p align="left">
-  This project use mlx (minilibx) of 42. The minilibx use OpenGL. It's a small graphical project (a game). The program take a map file as argument. The file is a .ber that take multiple character wich represent the map. Character '1' is a wall, '0' is an empty case, 'E' is an exit and 'C' is a collectible. The map has to be a rectangle. Then, you want to render the map with sprite's of your choice. The character has to be abble to move with wasd key. Escape make the program exit. To win the game, you hve to collect every collectible and leave with the exit with the minimum number of move possible.
 
   <!-- INSTALLATION -->
 ## Installation
 Use this command to clone the repository :
 ```markdown
-git clone git@github.com:Tonyg92x/42so_long.git
+git clone git@github.com:Tonyg92x/42Minishell.git
 ```
-Then you can go in the folder and write the command "make" to compile the library and everything needed for the program. If you are on linux, you have to go in mlx_linux foler then run configure before runing the makefile. It compile on mac and linux (debian tested).
- 
 <!-- Authors -->
 ## Authors
 <p align="left">
