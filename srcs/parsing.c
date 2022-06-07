@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 13:13:05 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/07 13:18:51 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "minishell.h"
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "commands.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-
-typedef struct s_flags
+// Temporaire
+static bool	exit_command(char *entry)
 {
-	bool	exit;
-}			t_flags;
+	if (ft_strnstr(entry, "exit", 10) != NULL)
+		return (true);
+	return (false);
+}
 
-//	main engine
-char	*routine_prompt(void);
+static void	split_it(char *entry, char **entry_split)
+{
+	size_t	x
 
-//	Parsing functions
-void	parsing(t_flags *flags, char *entry);
+	x = 0;
+	while (entry[x])
+	{
+		if ()
+	}
+}
 
-#endif
+void	parsing(t_flags *flags, char *entry)
+{
+	const char	**entry_split = malloc(strlen(entry));
+
+	split_it(entry, entry_split);
+	if (exit_command(entry))
+		flags->exit = true;
+	ft_free2d(entry);
+}

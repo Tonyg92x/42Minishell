@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/07 09:24:45 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/07 15:04:59 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ LIBFT_INC		= libft/includes/
 ## ----- SOURCE FILES ----- ##
 SRCS_FILES		=						\
 			main.c						\
+			prompt.c					\
+			parsing.c					\
 
 ## -----  if to compile differently on other os ----- ##
 ## ifeq ($(shell uname), Linux)
@@ -40,12 +42,14 @@ SRCS_FILES		=						\
 
 ## ----- .C TO .O CONVERT ----- ##
 
-OBJ_FILES		= $(SRCS_FILES:.c=.o)
+OBJ_FILES	=		$(SRCS_FILES:.c=.o)
 
 ## ----- ADDPREFIX TO FILES ----- ##
-SRCS			= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
-OBJS			= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-VPATH			= $(SRCS_DIR)
+
+SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
+OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+
+VPATH			=	$(SRCS_DIR)
 
 #--------------------------------------------------------------#
 
@@ -71,10 +75,9 @@ all: obj $(NAME)
 $(OBJ_DIR)%.o:%.c
 	$(CC) $(CFLAGS) -I $(LIBFT_OBJ) -I $(INCLUDE_DIR) -I $(LIBFT_INC) -c -o $@ -c $<
 
-
 $(NAME): $(OBJS)
 	$(LIBFT)
-	$(CC) $(OBJS) libft/libft.a -o $(NAME)
+	$(CC) $(OBJS) libft/libft.a -lreadline -o $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)

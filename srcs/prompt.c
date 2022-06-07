@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 13:13:05 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/07 13:02:15 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "minishell.h"
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include "commands.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-
-typedef struct s_flags
+char	*routine_prompt(void)
 {
-	bool	exit;
-}			t_flags;
+	char	*entry;
 
-//	main engine
-char	*routine_prompt(void);
-
-//	Parsing functions
-void	parsing(t_flags *flags, char *entry);
-
-#endif
+	entry = readline("\033[32m->\033[0m  ");
+	add_history(entry);
+	return (entry);
+}
