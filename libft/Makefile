@@ -6,7 +6,7 @@
 #    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2022/06/08 08:31:58 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/08 09:56:57 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 obj:
-	@echo "$(RED) Making TonyG C library $(AQUA)"
+	@echo "$(RED)          Making TonyG C library $(AQUA)"
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(NORMAL)"
 

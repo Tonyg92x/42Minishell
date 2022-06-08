@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 08:45:18 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/08 10:32:14 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,28 @@
 # include <sys/types.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <dirent.h>
 
 typedef struct s_flags
 {
+	bool	builtins;
+	bool	command;
+	bool	input;
+	bool	output;
 	bool	exit;
+	size_t	nb_command;
 }			t_flags;
 
-//	main engine
-char	*routine_prompt(void);
+
+//	Engine
+char		*routine_prompt(void);
+void		reset_flags(t_flags *flags);
 
 //	Parsing functions
-void	parsing(t_flags *flags, char *entry);
+bool		ft_is_metacharacter(char c);
+void		parsing(t_flags *flags, char *entry);
+
+//	Builtins
+void		ft_ls(char *path);
 
 #endif

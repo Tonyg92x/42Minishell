@@ -6,7 +6,7 @@
 #    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/08 09:11:28 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/08 10:37:15 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,21 +47,29 @@ LIBFT_INC		= libft/includes/
 ## ----- FILES ----- ##
 SRCS_FILES		=						\
 
-
 PARSING_FILES	=						\
 			parsing.c					\
 			parsing_utils.c				\
 
 BUILTINS_FILES	=						\
+			cd.c						\
 			echo.c						\
+			env.c						\
+			exit.c						\
+			export.c					\
+			ls.c						\
+			pwd.c						\
+			unset.c						\
 
 PROMPT_FILES	=						\
 			prompt.c					\
 
 MAIN_FILES		=						\
 			main.c						\
+			init.c						\
 
 ENGINE_FILES	=						\
+			exec1.c						\
 
 ## -----  if to compile differently on other os ----- ##
 ## ifeq ($(shell uname), Linux)
