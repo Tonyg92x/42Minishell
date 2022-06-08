@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 13:14:28 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/08 13:33:42 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PARSING_H
+# define PARSING_H
 
 #include "libft.h"
 #include "minishell.h"
 
-void	routine_prompt(t_flags *flags)
+typedef struct s_flags
 {
-	char	*entry;
+	bool	builtins;
+	bool	command;
+	bool	input;
+	bool	output;
+	bool	exit;
+	size_t	nb_command;
+}			t_flags;
 
-	reset_flags(flags);
-	while (flags->exit == false)
-	{
-		reset_flags(flags);
-		entry = readline("\033[4m\033[36mMinishell\033[0m \033[32m->\033[0m  ");
-		add_history(entry);
-		parsing(flags, entry);
-		free(entry);
-	}
-	rl_clear_history();
-	return;
-}
+#endif

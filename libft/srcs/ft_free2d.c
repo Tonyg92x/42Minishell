@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonyg <tonyg@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 09:25:02 by aguay             #+#    #+#             */
-/*   Updated: 2022/02/26 13:42:41 by tonyg            ###   ########.fr       */
+/*   Updated: 2022/06/08 11:42:00 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free2d(char **string)
 	int	i;
 
 	i = 0;
-	while (string[i] != NULL)
+	while (string[i] && string[i] != NULL)
 	{
 		free(string[i]);
 		i++;

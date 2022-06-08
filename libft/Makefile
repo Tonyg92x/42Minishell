@@ -6,7 +6,7 @@
 #    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2022/06/08 09:56:57 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/08 11:12:56 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ NORMAL 			= \033[0m
 
 ## ----- ALL ACTION DEPENDENCIES AND RECIPE FOR MAIN PROGRAM ----- ##
 all: obj $(NAME)
+	@echo "$(NORMAL)"
 
 $(OBJ_DIR)%.o:%.c
 	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -o $@ -c $<
@@ -115,9 +116,9 @@ $(NAME): $(OBJS)
 	ranlib $(NAME)
 
 obj:
-	@echo "$(RED)          Making TonyG C library $(AQUA)"
+	@echo ""
+	@echo "$(RED)Making TonyG C library $(AQUA)"
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(NORMAL)"
 
 ## ----- CLEAN COMMANDS ----- ##
 clean:
