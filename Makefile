@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
+#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/07 15:04:59 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/08 09:11:28 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME 			= minishell
 
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -O3
+
+CFLAGS			= -Wall -Wextra -Werror
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= srcs/
@@ -24,17 +25,43 @@ OBJ_DIR			= obj/
 
 INCLUDE_DIR		= includes/
 
-LIBFT_DIR		= libft
+PARSING_DIR		= $(SRCS_DIR)parsing
+
+BUILTINS_DIR	= $(SRCS_DIR)builtins
+
+PROMPT_DIR		= $(SRCS_DIR)prompt
+
+MAIN_DIR		= $(SRCS_DIR)main
+
+ENGINE_DIR		= $(SRCS_DIR)engine
+
+## ----- LIBFT PATH ----- ##
+LIB_DIR			= lib/
+
+LIBFT_DIR		= libft/
 
 LIBFT_OBJ		= libft/obj/
 
 LIBFT_INC		= libft/includes/
 
-## ----- SOURCE FILES ----- ##
+## ----- FILES ----- ##
 SRCS_FILES		=						\
-			main.c						\
-			prompt.c					\
+
+
+PARSING_FILES	=						\
 			parsing.c					\
+			parsing_utils.c				\
+
+BUILTINS_FILES	=						\
+			echo.c						\
+
+PROMPT_FILES	=						\
+			prompt.c					\
+
+MAIN_FILES		=						\
+			main.c						\
+
+ENGINE_FILES	=						\
 
 ## -----  if to compile differently on other os ----- ##
 ## ifeq ($(shell uname), Linux)
@@ -42,19 +69,26 @@ SRCS_FILES		=						\
 
 ## ----- .C TO .O CONVERT ----- ##
 
-OBJ_FILES	=		$(SRCS_FILES:.c=.o)
+$(OBJ_DIR)%.o: %.c
+	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(LIB_DIR) -I $(LIBFT_INC) -c $< -o $@
 
 ## ----- ADDPREFIX TO FILES ----- ##
 
-SRCS			=	$(addprefix $(SRCS_DIR), $(SRCS_FILES))
-OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+BUILTINS_SRCS	=	$(addprefix $(BUILTINS_DIR), $(BUILTINS_FILES))
+PROMPT_SRCS		=	$(addprefix $(PROMPT_DIR), $(PROMPT_FILES))
+PARSING_SRCS	=	$(addprefix $(PARSING_DIR), $(PARSING_FILES))
+MAIN_SRCS		=	$(addprefix $(MAIN_DIR), $(MAIN_FILES))
+ENGINE_SRCS		=	$(addprefix $(ENGINE_DIR), $(ENGINE_FILES))
 
-VPATH			=	$(SRCS_DIR)
+OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
+OBJ_FILES	=		$(SRCS_FILES:.c=.o) $(PARSING_FILES:.c=.o) $(BUILTINS_FILES:.c=.o) $(PROMPT_FILES:.c=.o) $(MAIN_FILES:.c=.o) $(ENGINE_FILES:.c=.o)
+
+VPATH			=	$(SRCS_DIR) $(PARSING_DIR) $(BUILTINS_DIR) $(PROMPT_DIR) $(MAIN_DIR) $(ENGINE_DIR)
 
 #--------------------------------------------------------------#
 
 ## ----- TOOLS AND COLORS ----- ##
-RM				= rm -Rf
+RM				= rm -rf
 NO_PRINT		= --no-print-directory
 RED 			= \033[31m
 GREEN 			= \033[32m
@@ -72,12 +106,9 @@ LIBFT			= make -C $(LIBFT_DIR)
 
 all: obj $(NAME)
 
-$(OBJ_DIR)%.o:%.c
-	$(CC) $(CFLAGS) -I $(LIBFT_OBJ) -I $(INCLUDE_DIR) -I $(LIBFT_INC) -c -o $@ -c $<
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJ_DIR) $(OBJS)
 	$(LIBFT)
-	$(CC) $(OBJS) libft/libft.a -lreadline -o $(NAME)
+	$(CC) $(OBJS) libft/libft.a -lcurses -lreadline -o $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
