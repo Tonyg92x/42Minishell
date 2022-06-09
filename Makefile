@@ -6,7 +6,7 @@
 #    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/08 13:29:15 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/08 13:50:38 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS_FILES		=						\
 PARSING_FILES	=						\
 			parsing.c					\
 			parsing_utils.c				\
-			split_entry.c			\
+			split_entry.c				\
+			data_analyser.c				\
 
 BUILTINS_FILES	=						\
 			cd.c						\

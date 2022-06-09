@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 13:47:04 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/09 08:47:19 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		reset_flags(t_flags *flags);
 //	Parsing functions
 void		parsing(t_flags *flags, char *entry);
 bool		ft_is_metacharacter(char c);
-size_t		how_much_until_meta(char *string);
+size_t		word_size(char *string);
 char		**error_exit(char **s_entry);
 char		*get_word(char *string, size_t *i);
 char		*get_char(char c);

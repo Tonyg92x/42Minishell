@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 13:47:00 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/09 08:47:52 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_word(char *string, size_t *i)
 	size_t			temp;
 	size_t			index;
 	char			*retour;
-	const size_t	size = how_much_until_meta(string);
+	const size_t	size = word_size(string);
 
 	if (size == 0)
 		return (NULL);
