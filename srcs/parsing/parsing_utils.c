@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/09 09:34:43 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:30:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,46 @@ bool	ft_is_metacharacter(char c)
 {
 	if (!c)
 		return (false);
-	if (c == ' ' || c == '\n' || c == '\t' || c == '|' ||
-			c == '&' || c == ';' || c == '(' || c == ')'
-			|| c == '<' || c == '>')
+	if (c == ' ' || c == '\n' || c == '\t' || c
+		== '|' || c == '&' || c == '(' || c == ')' || c == '<' || c == '>')
 		return (true);
 	return (false);
 }
 
-size_t	word_size(char *string)	// finish here
+static void	quotes_tool(char *string, size_t *single, size_t *doub)
+{
+	if (string[0] == '\'')
+	{
+		if ((*single) == 1)
+			(*single) = 0;
+		else
+			(*single) = 1;
+	}
+	else if (string[0] == '"')
+	{
+		if ((*doub) == 1)
+			(*doub) = 0;
+		else
+			(*doub) = 1;
+	}
+}
+
+size_t	word_size(char *string)
 {
 	size_t	i;
-	bool	single_quote;
-	bool	double_quote;
+	size_t	single;
+	size_t	doub;
 
-	single_quote = false;
-	double_quote = false;
 	if (!string)
 		return (0);
+	single = 0;
+	doub = 0;
 	i = 0;
 	while (string[i])
 	{
-		if (string[i] == '\'')
-		{
-			if (single_quote == true)
-				single_quote = false
-			else
-				single_quote = true;
-		}
-		if (string[i] == '"')
-		{
-			if (double_quote == true)
-				double_quote = false
-			else
-				double_quote = true;
-		}
-		if (single_quote = true)
-		{
-			
-		}
-		else if (double_quote = true)
-		{
-			
-		}
-		else (ft_is_metacharacter(string[i]))
+		quotes_tool(&string[i], &single, &doub);
+		if (ft_is_metacharacter(string[i]) && single
+			== 0 && doub == 0)
 			return (i);
 		i++;
 	}

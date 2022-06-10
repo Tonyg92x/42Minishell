@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_entry.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/09 08:47:52 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:23:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_word(char *string, size_t *i)
 	temp = 0;
 	(*i) += size;
 	index = 0;
-	retour = ft_calloc(size + 1,sizeof(char));
+	retour = ft_calloc(size + 1, sizeof(char));
 	if (!retour)
 		return (NULL);
 	while (temp < size)
@@ -46,34 +46,39 @@ char	*get_char(char c)
 	return (retour);
 }
 
+static void	parse_char(char **split_entry, char *entry, size_t *i, size_t *i_r)
+{
+	if (ft_is_metacharacter(entry[(*i)]))
+	{
+		split_entry[(*i_r)] = get_char(entry[(*i)]);
+		if (!split_entry[(*i_r)])
+			error_exit(split_entry);
+		(*i)++;
+	}
+	else
+	{
+		split_entry[(*i_r)] = get_word(&entry[(*i)], i);
+		if (!split_entry[(*i_r)])
+			error_exit(split_entry);
+	}
+	(*i_r)++;
+}
+
 char	**split_entry(char *entry)
 {
-	char			**temp;
+	char			**split_entry;
 	size_t			i;
 	size_t			i_r;
 
-	temp = ft_calloc(how_much_node(entry), sizeof(char *));
-	if (!temp)
-		error_exit(temp);
+	split_entry = ft_calloc(how_much_node(entry), sizeof(char *));
+	if (!split_entry)
+		error_exit(split_entry);
 	i = 0;
 	i_r = 0;
 	while (entry[i])
 	{
-		if (ft_is_metacharacter(entry[i]))
-		{
-			temp[i_r] = get_char(entry[i]);
-			if (!temp[i_r])
-				error_exit(temp);
-			i++;
-		}
-		else
-		{
-			temp[i_r] = get_word(&entry[i], &i);
-			if (!temp[i_r])
-				error_exit(temp);
-		}
-		i_r++;
+		parse_char(split_entry, entry, &i, &i_r);
 	}
-	temp[i_r] = NULL;
-	return (temp);
+	split_entry[i_r] = NULL;
+	return (split_entry);
 }

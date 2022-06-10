@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
+#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/08 13:50:38 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/10 15:38:34 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ OBJ_DIR			= obj/
 
 INCLUDE_DIR		= includes/
 
+LIB_DIR			= $(LIBFT_DIR)lib/
+
 PARSING_DIR		= $(SRCS_DIR)parsing
 
 BUILTINS_DIR	= $(SRCS_DIR)builtins
@@ -36,13 +38,12 @@ MAIN_DIR		= $(SRCS_DIR)main
 ENGINE_DIR		= $(SRCS_DIR)engine
 
 ## ----- LIBFT PATH ----- ##
-LIB_DIR			= lib/
 
-LIBFT_DIR		= libft/
+LIBFT_DIR		= $(SRCS_DIR)libft/
 
-LIBFT_OBJ		= libft/obj/
+LIBFT_OBJ		= $(SRCS_DIR)libft/obj/
 
-LIBFT_INC		= libft/includes/
+LIBFT_INC		= $(SRCS_DIR)libft/includes/
 
 ## ----- FILES ----- ##
 SRCS_FILES		=						\
@@ -118,7 +119,7 @@ all: obj $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	$(LIBFT)
-	$(CC) $(OBJS) libft/libft.a -lcurses -lreadline -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT_DIR)libft.a $(LIB_DIR)libreadline.a $(LIB_DIR)libhistory.a -lcurses -lreadline -o $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
@@ -140,6 +141,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -rf libft/libft.a
 
 re: fclean all
 

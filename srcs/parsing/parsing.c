@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/09 07:30:02 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/10 15:15:54 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parsing(t_flags *flags, char *entry)
 	temp = 0;
 	entry_sp = split_entry(entry);
 	if (!entry_sp)
-		return;
+		return ;
 	while (entry_sp[temp])
 		printf("%s\n", entry_sp[temp++]);
 	ft_free2d(entry_sp);
