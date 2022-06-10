@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/10 15:15:54 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/08 13:33:42 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PARSING_H
+# define PARSING_H
 
 #include "libft.h"
 #include "minishell.h"
 
-void	parsing(t_flags *flags, char *entry)
+typedef struct s_flags
 {
-	char	**entry_sp;
-	int		temp;
+	bool	builtins;
+	bool	command;
+	bool	input;
+	bool	output;
+	bool	exit;
+	size_t	nb_command;
+}			t_flags;
 
-	temp = 0;
-	entry_sp = split_entry(entry);
-	if (!entry_sp)
-		return ;
-	while (entry_sp[temp])
-		printf("%s\n", entry_sp[temp++]);
-	ft_free2d(entry_sp);
-	(void)flags;
-}
+#endif

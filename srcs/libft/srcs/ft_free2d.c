@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_free2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/10 15:15:54 by aguay            ###   ########.fr       */
+/*   Created: 2021/11/24 09:25:02 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/08 11:42:00 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "minishell.h"
 
-void	parsing(t_flags *flags, char *entry)
+//	Free every adresse entered in the pointer of
+//	pointers,then free the pointer of pointers.
+void	ft_free2d(char **string)
 {
-	char	**entry_sp;
-	int		temp;
+	int	i;
 
-	temp = 0;
-	entry_sp = split_entry(entry);
-	if (!entry_sp)
-		return ;
-	while (entry_sp[temp])
-		printf("%s\n", entry_sp[temp++]);
-	ft_free2d(entry_sp);
-	(void)flags;
+	i = 0;
+	while (string[i] && string[i] != NULL)
+	{
+		free(string[i]);
+		i++;
+	}
+	free(string);
 }

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free2d.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonyg <tonyg@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 09:25:02 by aguay             #+#    #+#             */
-/*   Updated: 2022/02/26 13:42:41 by tonyg            ###   ########.fr       */
+/*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/10 15:16:13 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "minishell.h"
 
-//	Free every adresse entered in the pointer of
-//	pointers,then free the pointer of pointers.
-void	ft_free2d(char **string)
+void	reset_flags(t_flags *flags)
 {
-	int	i;
-
-	i = 0;
-	while (string[i] != NULL)
-	{
-		free(string[i]);
-		i++;
-	}
-	free(string);
+	flags->builtins = false;
+	flags->command = false;
+	flags->exit = false;
+	flags->input = false;
+	flags->output = false;
+	flags->nb_command = 0;
 }

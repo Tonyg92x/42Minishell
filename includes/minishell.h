@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/08 08:45:18 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/09 08:47:19 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,31 @@
 
 # include "libft.h"
 # include "commands.h"
+# include "parsing.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <dirent.h>
 
-typedef struct s_flags
-{
-	bool	exit;
-}			t_flags;
-
-//	main engine
-char	*routine_prompt(void);
+//	Engine
+void		routine_prompt(t_flags *flags);
+void		reset_flags(t_flags *flags);
 
 //	Parsing functions
-void	parsing(t_flags *flags, char *entry);
+void		parsing(t_flags *flags, char *entry);
+bool		ft_is_metacharacter(char c);
+size_t		word_size(char *string);
+char		**error_exit(char **s_entry);
+char		*get_word(char *string, size_t *i);
+char		*get_char(char c);
+char		**split_entry(char *entry);
+int			how_much_node(char *string);
+
+
+//	Builtins
+void		ft_ls(char *path);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 15:07:24 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/10 15:16:07 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 
 int	main(void)
 {
-	char	*entry;
-	t_flags flags;
+	t_flags	flags;
 
-	flags.exit = false;
-	while (flags.exit == false)
-	{
-		entry = routine_prompt();
-		parsing(&flags, entry);
-		free(entry);
-	}
+	routine_prompt(&flags);
 }
