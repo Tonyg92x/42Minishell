@@ -6,13 +6,14 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/11 07:18:34 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/11 07:22:26 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
+//	Parse the word to understand the command and its agrument.
 static bool	parse_word(t_command_q *command_q, char **split_entry, size_t *i)
 {
 	if (white_space(split_entry[(*i)], i))
