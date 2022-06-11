@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/09 08:47:19 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/11 06:06:53 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 # include <dirent.h>
 
 //	Engine
-void		routine_prompt(t_flags *flags);
-void		reset_flags(t_flags *flags);
+void		routine_prompt(t_command_q *command_q);
 
 //	Parsing functions
-void		parsing(t_flags *flags, char *entry);
+void		parsing(t_command_q *command_q, char *entry);
 bool		ft_is_metacharacter(char c);
 size_t		word_size(char *string);
 char		**error_exit(char **s_entry);
@@ -38,8 +37,11 @@ char		*get_char(char c);
 char		**split_entry(char *entry);
 int			how_much_node(char *string);
 
-
 //	Builtins
 void		ft_ls(char *path);
+
+//	Commands fucntions
+void	initialise_commands(t_command_q *command_q);
+void	initialise_command_list(t_command_q *command_q);
 
 #endif

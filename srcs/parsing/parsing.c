@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/10 15:15:54 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/11 05:39:02 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
-void	parsing(t_flags *flags, char *entry)
+void	parsing(t_command_q *command_q, char *entry)
 {
 	char	**entry_sp;
 	int		temp;
@@ -25,5 +25,5 @@ void	parsing(t_flags *flags, char *entry)
 	while (entry_sp[temp])
 		printf("%s\n", entry_sp[temp++]);
 	ft_free2d(entry_sp);
-	(void)flags;
+	(void)command_q;
 }

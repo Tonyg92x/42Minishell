@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 12:44:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/11 06:06:04 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@
 
 typedef struct command
 {
-	struct command	*next;
-	struct command	*prev;
-	char			**cmd;
-	char			*path;
+	struct command		*next;
+	struct command	*	prev;
+	char				**cmd;
+	char				*path;
+	bool				builtins;
+	int					input;
+	int					output;
 }				t_command;
 
-typedef struct command_list
+typedef struct command_q
 {
 	struct command	*start;
-	int				len;
-}				t_command_list;
+	int				nb_command;
+}				t_command_q;
 
 #endif

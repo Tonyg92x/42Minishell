@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
+#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/10 15:38:34 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/11 06:14:21 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ PARSING_FILES	=						\
 			parsing.c					\
 			parsing_utils.c				\
 			split_entry.c				\
-			data_analyser.c				\
+			entry_analyser.c			\
 
 BUILTINS_FILES	=						\
 			cd.c						\
@@ -69,7 +69,7 @@ PROMPT_FILES	=						\
 
 MAIN_FILES		=						\
 			main.c						\
-			init.c						\
+			command_utils.c			\
 
 ENGINE_FILES	=						\
 			exec1.c						\
@@ -141,7 +141,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -rf libft/libft.a
+	@rm -rf $(LIBFT_DIR)libft.a
 
 re: fclean all
 
