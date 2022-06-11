@@ -6,7 +6,7 @@
 #    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/11 06:14:21 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/11 06:21:13 by anthony          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ PARSING_FILES	=						\
 			parsing_utils.c				\
 			split_entry.c				\
 			entry_analyser.c			\
+			analyser_utils.c			\
 
 BUILTINS_FILES	=						\
 			cd.c						\

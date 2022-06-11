@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/11 06:06:53 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/11 06:58:48 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ char		*get_word(char *string, size_t *i);
 char		*get_char(char c);
 char		**split_entry(char *entry);
 int			how_much_node(char *string);
+void		analyse_entry(t_command_q *command_q, char **split_entry);
+bool		white_space(char *string, size_t *i);
+bool		quotes_incomplete(char *string, size_t *i);
 
 //	Builtins
 void		ft_ls(char *path);

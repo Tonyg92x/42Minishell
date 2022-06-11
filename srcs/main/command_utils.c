@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/11 06:06:34 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/11 07:06:37 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	initialise_command_list(t_command_q *command_q)
 {
 	command_q->start = NULL;
 	command_q->nb_command = 0;
+	command_q->valid_entry = true;
 }
 
 //	Initilise back the command list and his flags.

@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/11 06:06:04 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/11 07:06:12 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct command_q
 {
 	struct command	*start;
 	int				nb_command;
+	bool			valid_entry;
 }				t_command_q;
 
 #endif
