@@ -6,7 +6,7 @@
 /*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/09 08:47:19 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/12 07:09:20 by anthony          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 # include <dirent.h>
 
 //	Engine
-void		routine_prompt(t_flags *flags);
-void		reset_flags(t_flags *flags);
+void		routine_prompt(t_command_q *command_q);
 
 //	Parsing functions
-void		parsing(t_flags *flags, char *entry);
+void		parsing(t_command_q *command_q, char *entry);
 bool		ft_is_metacharacter(char c);
 size_t		word_size(char *string);
 char		**error_exit(char **s_entry);
@@ -37,9 +36,23 @@ char		*get_word(char *string, size_t *i);
 char		*get_char(char c);
 char		**split_entry(char *entry);
 int			how_much_node(char *string);
-
+void		analyse_entry(t_command_q *command_q, char **split_entry);
+bool		white_space(char *string, size_t *i);
+bool		quotes_incomplete(char *string, size_t *i);
+bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
+bool		is_builtins(t_command *command, char *string);
+bool		command_is_valid(t_command *command, char **split_entry, size_t *i);
 
 //	Builtins
 void		ft_ls(char *path);
+
+//	Commands fucntions
+t_command	*last_command(t_command_q *command_q);
+void		initialise_commands(t_command_q *command_q);
+t_command	*new_command(t_command_q *command_q);
+t_command	*last_command(t_command_q *command_q);
+void		free_command(t_command	*command);
+
+
 
 #endif
