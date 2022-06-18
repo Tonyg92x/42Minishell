@@ -21,11 +21,17 @@ static size_t	how_much_arg(char **split_entry, size_t *i)
 		return (0);
 	temp = (*i);
 	retour = 0;
-	while (split_entry[temp] && !ft_is_metacharacter(split_entry[temp][0])
-		&& split_entry[temp][0] != ' ')
+	while (split_entry[temp] && (!ft_is_metacharacter(split_entry[temp][0])))
 	{
-		retour++;
+		if (temp > (*i) && split_entry[temp][0] == '-')
+			retour++;
+		else if (temp > (*i))
+			return (retour);
+		else
+			retour++;
 		temp++;
+		while (split_entry[temp] && split_entry[temp][0] == ' ')
+			temp++;
 	}
 	return (++retour);
 }
@@ -34,15 +40,19 @@ static size_t	how_much_arg(char **split_entry, size_t *i)
 bool	init_cmd(t_command *command, char **split_entry, size_t *i)
 {
 	const size_t	cmd_size = how_much_arg(split_entry, i);
-	size_t			temp;
+	size_t			cmd_entered;
 
 	if (cmd_size == 0)
 		return (false);
 	command->cmd = ft_calloc(cmd_size, sizeof(char *));
-	temp = 0;
-	while (temp < cmd_size - 1)
-		command->cmd[temp++] = ft_strdup(split_entry[(*i)++]);
-	command->cmd[temp] = NULL;
+	cmd_entered = 0;
+	while (cmd_entered < cmd_size - 1)
+	{
+		command->cmd[cmd_entered++] = ft_strdup(split_entry[(*i)++]);
+		while (split_entry[(*i)] && split_entry[(*i)][0] == ' ')
+			(*i)++;
+	}
+	command->cmd[cmd_entered] = NULL;
 	return (true);
 }
 

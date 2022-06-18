@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 08:25:13 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/18 10:29:39 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ typedef struct command
 {
 	struct command		*next;
 	struct command		*prev;
-	char				**cmd;
-	char				*path;
 	bool				builtins;
-	char				*input;
-	char				*output;
 	bool				append_mode;
 	char				*delimiter;
+	char				**cmd;
+	char				*path;
+	char				*input;
+	char				*output;
+
 }				t_command;
 
 typedef struct command_q
