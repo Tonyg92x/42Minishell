@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyser_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/12 07:12:29 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/18 07:42:43 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 void	get_command(t_command *command, char **split_entry, size_t *i)
 {
-	if (is_builtins(command, split_entry[(*i)]))
-		parse_builtins(command, split_entry[(*i)]), i);
-	if (!command_is_valid(command, split_entry, i))
-		ft_putstr_fd("Invalid command.\n", 2);
+	(void)command;
+	(void)split_entry;
+	(void)i;
+	// if (is_builtins(command, split_entry[(*i)]))
+	// 	parse_builtins(command, &split_entry[(*i)], i);
+	// if (!command_is_valid(command, split_entry, i))
+	// 	ft_putstr_fd("Invalid command.\n", 2);
 }
 
 //	look if there is input in the command
@@ -30,15 +33,15 @@ bool	input_fd(t_command_q *command_q, char **split_entry, size_t *i)
 	if (split_entry[(*i)][0] == '<')
 	{
 		temp = new_command(command_q);
-		if (split_entry[(*i)][1] == '<')
+		if (split_entry[(*i) + 1][0] == '<')
 		{
-			temp->delimiter = true;
+			temp->delimiter = "DelemiterKeyword";
 			//	start here dock here ??
-			temp->input = ft_strdup(split_entry[(*i)][2]);
+			temp->input = ft_strdup(split_entry[(*i) + 2]);
 			(*i) += 3;
 			return (true);
 		}
-		temp->input = ft_strdup(split_entry[(*i)][1]);
+		temp->input = ft_strdup(split_entry[(*i) + 1]);
 		(*i) += 2;
 		return (true);
 	}

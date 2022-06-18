@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
+#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/12 06:48:12 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/18 08:06:15 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ PROMPT_FILES	=						\
 
 MAIN_FILES		=						\
 			main.c						\
-			command_utils.c			\
+			command_utils.c				\
+			envp.c						\
 
 ENGINE_FILES	=						\
 			exec1.c						\

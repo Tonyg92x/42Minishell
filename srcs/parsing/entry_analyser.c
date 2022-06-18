@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry_analyser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/12 06:51:17 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/18 08:19:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	parse_word(t_command_q *command_q, char **split_entry, size_t *i)
 		return (false);
 	else if (quotes_incomplete(split_entry[(*i)], i))
 	{
-		command_q->valid_entry = true;
+		command_q->valid_entry = false;
 		return (false);
 	}
 	else if (input_fd(command_q, split_entry, i))

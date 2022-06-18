@@ -14,24 +14,24 @@
 //	Do all the operation to check if the command is
 //	valid, the path and his arguments and if there is
 //	and output / append mode.
-bool	command_is_valid(t_command *command, char **split_entry, size_t *i)
-{
-	/*
-		2)	Look if the command is a command with access
-			and the path to the command. If it is, add path
-			of the command and increment iterator. Else free
-			the command and return an error for that invalid
-			command but continue execution cause other command
-			could be valid.
-		3)	look if there is arguments or ouputs increment
-			iterator for each ones..
-	*/
-}
+// bool	command_is_valid(t_command *command, char **split_entry, size_t *i)
+// {
+// 	/*
+// 		2)	Look if the command is a command with access
+// 			and the path to the command. If it is, add path
+// 			of the command and increment iterator. Else free
+// 			the command and return an error for that invalid
+// 			command but continue execution cause other command
+// 			could be valid.
+// 		3)	look if there is arguments or ouputs increment
+// 			iterator for each ones..
+// 	*/
+// }
 
-void	parse_builtins(t_command *command, char **split_entry, size_t *i)
-{
+// void	parse_builtins(t_command *command, char **split_entry, size_t *i)
+// {
 	
-}
+// }
 
 //	Look if the command passed in string is a builtins
 bool	is_builtins(t_command *command, char *string)

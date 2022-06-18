@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/12 07:09:44 by anthony          ###   ########.fr       */
+/*   Updated: 2022/06/18 08:16:46 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	free_command(t_command	*command)
 
 //	Initilise the list of command and his flags.
 //	Free the last list entered if there is one.
-//	ADD THE FREE OF ALL CHAR * FOR EVERY COMMAND
 void	initialise_commands(t_command_q *command_q)
 {
 	t_command	*temp;
