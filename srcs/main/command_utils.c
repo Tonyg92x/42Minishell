@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 08:16:46 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/18 09:56:35 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	initialise_commands(t_command_q *command_q)
 	}
 	if (temp)
 		free_command(temp);
+	command_q->start = NULL;
 }

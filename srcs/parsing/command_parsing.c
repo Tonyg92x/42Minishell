@@ -11,6 +11,41 @@
 #include "libft.h"
 #include "minishell.h"
 
+//	Return the number of arguments to allocate
+static size_t	how_much_arg(char **split_entry, size_t *i)
+{
+	size_t	retour;
+	size_t	temp;
+
+	if (!split_entry || !split_entry[(*i)])
+		return (0);
+	temp = (*i);
+	retour = 0;
+	while (split_entry[temp] && !ft_is_metacharacter(split_entry[temp][0])
+		&& split_entry[temp][0] != ' ')
+	{
+		retour++;
+		temp++;
+	}
+	return (++retour);
+}
+
+//	Initialise the exact size for of the command in command.cmd
+bool	init_cmd(t_command *command, char **split_entry, size_t *i)
+{
+	const size_t	cmd_size = how_much_arg(split_entry, i);
+	size_t			temp;
+
+	if (cmd_size == 0)
+		return (false);
+	command->cmd = ft_calloc(cmd_size, sizeof(char *));
+	temp = 0;
+	while (temp < cmd_size - 1)
+		command->cmd[temp++] = ft_strdup(split_entry[(*i)++]);
+	command->cmd[temp] = NULL;
+	return (true);
+}
+
 //	Do all the operation to check if the command is
 //	valid, the path and his arguments and if there is
 //	and output / append mode.
@@ -27,32 +62,3 @@
 // 			iterator for each ones..
 // 	*/
 // }
-
-// void	parse_builtins(t_command *command, char **split_entry, size_t *i)
-// {
-	
-// }
-
-//	Look if the command passed in string is a builtins
-bool	is_builtins(t_command *command, char *string)
-{
-	if (ft_strnstr(string, "cd", 2) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "echo", 4) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "env", 3) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "exit", 5) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "export", 6) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "ls", 2) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "pwd", 3) != NULL)
-		command->builtins = true;
-	if (ft_strnstr(string, "unset", 5) != NULL)
-		command->builtins = true;
-	if (command->builtins == true)
-		return (true);
-	return (false);
-}

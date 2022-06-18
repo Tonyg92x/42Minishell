@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/18 08:06:15 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/18 09:47:45 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ PARSING_FILES	=						\
 			command_parsing.c			\
 
 BUILTINS_FILES	=						\
+			builtins.c					\
 			cd.c						\
 			echo.c						\
 			env.c						\

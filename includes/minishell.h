@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 08:25:32 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/18 09:45:49 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ void		analyse_entry(t_command_q *command_q, char **split_entry);
 bool		white_space(char *string, size_t *i);
 bool		quotes_incomplete(char *string, size_t *i);
 bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
-bool		is_builtins(t_command *command, char *string);
-bool		command_is_valid(t_command *command, char **split_entry, size_t *i);
+bool		init_cmd(t_command *command, char **split_entry, size_t *i);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 
 //	Builtins
+bool		is_builtins(char *string);
 void		ft_ls(char *path);
 
 //	Commands fucntions
 t_command	*last_command(t_command_q *command_q);
 void		initialise_commands(t_command_q *command_q);
 t_command	*new_command(t_command_q *command_q);
-t_command	*last_command(t_command_q *command_q);
 void		free_command(t_command	*command);
 void		get_command(t_command *command, char **split_entry, size_t *i);
+bool		command_is_valid(t_command *command, char **split_entry, size_t *i);
 
 //	Environnement fonctions
 bool		envp_init(t_envp *envp);
