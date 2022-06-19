@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/18 09:47:45 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/19 14:04:37 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME 			= minishell
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= gcc
 
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= srcs/
@@ -37,6 +37,8 @@ MAIN_DIR		= $(SRCS_DIR)main
 
 ENGINE_DIR		= $(SRCS_DIR)engine
 
+READLINES_HDIR	= $(INCLUDE_DIR)readline/
+
 ## ----- LIBFT PATH ----- ##
 
 LIBFT_DIR		= $(SRCS_DIR)libft/
@@ -46,9 +48,9 @@ LIBFT_OBJ		= $(SRCS_DIR)libft/obj/
 LIBFT_INC		= $(SRCS_DIR)libft/includes/
 
 ## ----- FILES ----- ##
-SRCS_FILES		=						\
+SRCS_FILES			=					\
 
-PARSING_FILES	=						\
+PARSING_FILES		=					\
 			parsing.c					\
 			parsing_utils.c				\
 			split_entry.c				\
@@ -56,36 +58,46 @@ PARSING_FILES	=						\
 			analyser_utils.c			\
 			command_parsing.c			\
 
-BUILTINS_FILES	=						\
+BUILTINS_FILES		=					\
 			builtins.c					\
 			cd.c						\
 			echo.c						\
 			env.c						\
 			exit.c						\
 			export.c					\
-			ls.c						\
 			pwd.c						\
 			unset.c						\
 
-PROMPT_FILES	=						\
+PROMPT_FILES		=					\
 			prompt.c					\
 
-MAIN_FILES		=						\
+MAIN_FILES			=					\
 			main.c						\
 			command_utils.c				\
 			envp.c						\
 
-ENGINE_FILES	=						\
+ENGINE_FILES		=					\
 			exec1.c						\
+
+INCLUDES_FILES		=					\
+			commands.h					\
+			environnement.h				\
+			minishell.h					\
+			parsing.h					\
+
+READLINES_HFILES	=					\
+			chardefs.h					\
+			history.h					\
+			keymaps.h					\
+			readline.h					\
+			rlconf.h					\
+			rlstdc.h					\
+			rltypedefs.h				\
+			tilde.h						\
 
 ## -----  if to compile differently on other os ----- ##
 ## ifeq ($(shell uname), Linux)
 ## endif
-
-## ----- .C TO .O CONVERT ----- ##
-
-$(OBJ_DIR)%.o: %.c
-	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(LIB_DIR) -I $(LIBFT_INC) -c $< -o $@
 
 ## ----- ADDPREFIX TO FILES ----- ##
 
@@ -98,7 +110,15 @@ ENGINE_SRCS		=	$(addprefix $(ENGINE_DIR), $(ENGINE_FILES))
 OBJS			=	$(addprefix $(OBJ_DIR), $(OBJ_FILES))
 OBJ_FILES	=		$(SRCS_FILES:.c=.o) $(PARSING_FILES:.c=.o) $(BUILTINS_FILES:.c=.o) $(PROMPT_FILES:.c=.o) $(MAIN_FILES:.c=.o) $(ENGINE_FILES:.c=.o)
 
-VPATH			=	$(SRCS_DIR) $(PARSING_DIR) $(BUILTINS_DIR) $(PROMPT_DIR) $(MAIN_DIR) $(ENGINE_DIR)
+READLINES_HSRCS	=	$(addprefix $(READLINES_HDIR), $(READLINES_HFILES))
+INCLUDES_SRCS	=	$(addprefix $(INCLUDE_DIR), $(INCLUDES_FILES)) $(READLINES_HSRCS)
+
+VPATH			=	$(SRCS_DIR) $(PARSING_DIR) $(BUILTINS_DIR) $(PROMPT_DIR) $(MAIN_DIR) $(ENGINE_DIR) $(INCLUDES_SRCS)
+
+## ----- .C TO .O CONVERT ----- ##
+
+$(OBJ_DIR)%.o: %.c $(INCLUDES_SRCS)
+	$(CC) $(CFLAGS) -I $(INCLUDE_DIR) -I $(LIB_DIR) -I $(LIBFT_INC) -c $< -o $@
 
 #--------------------------------------------------------------#
 

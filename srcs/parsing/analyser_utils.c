@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 07:42:43 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 13:21:17 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,10 @@ bool	input_fd(t_command_q *command_q, char **split_entry, size_t *i)
 }
 
 //	Look if the word is simply a whitespace
-bool	white_space(char *string, size_t *i)
+bool	is_white_space(char *string)
 {
 	if (string[0] == ' ' || string[0] == '\n' || string[0] == '\t')
-	{
-		(*i)++;
 		return (true);
-	}
 	return (false);
 }
 

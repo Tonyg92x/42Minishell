@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/10 15:23:41 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 14:14:07 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,19 @@ static void	parse_char(char **split_entry, char *entry, size_t *i, size_t *i_r)
 	(*i_r)++;
 }
 
-char	**split_entry(char *entry)
+char	**split_entry(char *entry, int nb_node)
 {
 	char			**split_entry;
 	size_t			i;
 	size_t			i_r;
 
-	split_entry = ft_calloc(how_much_node(entry), sizeof(char *));
+	split_entry = ft_calloc(nb_node, sizeof(char *));
 	if (!split_entry)
 		error_exit(split_entry);
 	i = 0;
 	i_r = 0;
 	while (entry[i])
-	{
 		parse_char(split_entry, entry, &i, &i_r);
-	}
 	split_entry[i_r] = NULL;
 	return (split_entry);
 }

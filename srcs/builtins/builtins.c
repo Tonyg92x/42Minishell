@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 09:13:32 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 09:18:12 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 13:25:27 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ bool	is_builtins( char *string)
 	if (ft_strnstr(string, "exit", 5) != NULL)
 		return (true);
 	if (ft_strnstr(string, "export", 6) != NULL)
-		return (true);
-	if (ft_strnstr(string, "ls", 2) != NULL)
 		return (true);
 	if (ft_strnstr(string, "pwd", 3) != NULL)
 		return (true);

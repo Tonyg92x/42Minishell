@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 09:45:49 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 14:14:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ size_t		word_size(char *string);
 char		**error_exit(char **s_entry);
 char		*get_word(char *string, size_t *i);
 char		*get_char(char c);
-char		**split_entry(char *entry);
+char		**split_entry(char *entry, int nb_node);
 int			how_much_node(char *string);
-void		analyse_entry(t_command_q *command_q, char **split_entry);
-bool		white_space(char *string, size_t *i);
+void		analyse_entry(t_command_q *command_q, char **split_entry, int nb_node);
+bool		is_white_space(char *string);
 bool		quotes_incomplete(char *string, size_t *i);
 bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
-bool		init_cmd(t_command *command, char **split_entry, size_t *i);
+bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 
 //	Builtins

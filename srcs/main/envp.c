@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 08:04:14 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 08:25:29 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 11:39:00 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //	Initialise envp struct has boot up.
 bool	envp_init(t_envp *envp)
 {
-	envp->HOME = getenv("HOME");
+	envp->HOME = getenv("HOME"); 
 	if (!envp->HOME)
 		return (false);
 	envp->LOGNAME = getenv("LOGNAME");

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 10:33:59 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/19 14:14:46 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	print_comannd_q(t_command_q *command_q)
 	printf("Nb_command : %d\n\n", command_q->nb_command);
 	while (temp)
 	{
-		printf("Command %d\n", i);
+		printf("Command %d\n", i++);
 		printf("next = %p\n", temp->next);
 		printf("prev = %p\n", temp->prev);
 		printf("builtins = %d\n", temp->builtins);
@@ -45,11 +45,13 @@ static void	print_comannd_q(t_command_q *command_q)
 void	parsing(t_command_q *command_q, char *entry)
 {
 	char	**entry_sp;
+	int		nb_node;
 
-	entry_sp = split_entry(entry);
+	nb_node = how_much_node(entry);
+	entry_sp = split_entry(entry, nb_node);
 	if (!entry_sp)
 		return ;
-	analyse_entry(command_q, entry_sp);
+	analyse_entry(command_q, entry_sp, nb_node);
 	print_comannd_q(command_q);
 	ft_free2d(entry_sp);
 	(void)command_q;
