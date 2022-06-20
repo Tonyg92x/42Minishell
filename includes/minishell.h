@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/19 14:14:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:53:16 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "commands.h"
 # include "parsing.h"
-# include "environnement.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
@@ -46,7 +45,7 @@ void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 
 //	Builtins
 bool		is_builtins(char *string);
-void		ft_ls(char *path);
+void		ft_exit(t_command_q *command_q);
 
 //	Commands fucntions
 t_command	*last_command(t_command_q *command_q);
@@ -57,6 +56,7 @@ void		get_command(t_command *command, char **split_entry, size_t *i);
 bool		command_is_valid(t_command *command, char **split_entry, size_t *i);
 
 //	Environnement fonctions
-bool		envp_init(t_envp *envp);
+char	**envp_init(char **envp);
+
 
 #endif

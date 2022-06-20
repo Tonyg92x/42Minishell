@@ -6,12 +6,11 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 10:29:39 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:37:54 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "environnement.h"
 
 #ifndef COMMANDS_H
 # define COMMANDS_H
@@ -35,7 +34,7 @@ typedef struct command_q
 	struct command	*start;
 	int				nb_command;
 	bool			valid_entry;
-	t_envp			*envp;
+	char			**envp;
 }				t_command_q;
 
 #endif

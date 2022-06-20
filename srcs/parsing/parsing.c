@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 09:39:16 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 11:56:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	print_comannd_q(t_command_q *command_q)
 		printf("Path = %s\n", temp->path);
 		printf("input = %s\n", temp->input);
 		printf("output = %s\n\n", temp->output);
+		if (ft_strnstr(temp->cmd[0], "exit", 4))
+			ft_exit(command_q);
 		temp = temp->next;
 	}
 }
@@ -54,5 +56,4 @@ void	parsing(t_command_q *command_q, char *entry)
 	analyse_entry(command_q, entry_sp, nb_node);
 	print_comannd_q(command_q);
 	ft_free2d(entry_sp);
-	(void)command_q;
 }

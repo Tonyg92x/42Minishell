@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/19 14:04:37 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/20 11:01:15 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ ENGINE_FILES		=					\
 
 INCLUDES_FILES		=					\
 			commands.h					\
-			environnement.h				\
 			minishell.h					\
 			parsing.h					\
 
