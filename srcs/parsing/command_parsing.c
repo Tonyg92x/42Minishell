@@ -57,21 +57,24 @@ bool	init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length)
 static bool	is_command(char *command, t_command_q *command_q)
 {
 	const size_t	index_p = index_to_path(command_q->envp);
+	char			**str;
 
 	if (index_p == 999999)
 	{
 		ft_putstr_fd("Error: there is no path variable.\n", 2);
 		return (false);
 	}
-	if (!path_is_valid(command, ft_split(command_q->envp[
-			(int)index_p], ':'), command_q))
+	if (!command_q->envp || !command_q->envp[(int)index_p])
+		return (false);
+	str =  ft_split(command_q->envp[(int)index_p], ':');
+	if (str && !path_is_valid(command, str, command_q))
 		return (false);
 	return (true);
 }
 
 bool	command_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length)
 {
-	if (!split_entry)
+	if (!split_entry || !split_entry[(*i)])
 		return (false);
 	if (!is_command(split_entry[(*i)], command_q))
 		return (false);

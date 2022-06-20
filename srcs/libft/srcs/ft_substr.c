@@ -6,47 +6,32 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:38:32 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 13:14:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 16:03:18 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*start_bigger(void)
-{
-	char	*str;
-
-	str = malloc(1);
-	if (!str)
-		return (NULL);
-	str[0] = '\0';
-	return (str);
-}
-
 //	Return a new string, that has the content of s string, starting
 //	at the start argument as index. The new string is allocated with
 //	malloc so don't forget to free it.
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *src, unsigned int start, size_t len)
 {
-	unsigned int	count;
-	char			*str;
+	size_t			i;
+	size_t			slen;
+	char			*tmp;
 
-	if (!s)
+	if (!src)
 		return (NULL);
-	count = 0;
-	if (start > ft_strlen(s))
-		return (start_bigger());
-	if (len > ft_strlen(s))
-		len = ft_strlen(s) - start + 1;
-	while (count++ != start && *s)
-		s++;
-	str = malloc(len + 1);
-	if (!str || !s)
+	slen = ft_strlen((char *)src);
+	if (start > slen)
+		return (ft_strdup(""));
+	tmp = malloc((len + 1) * sizeof(char));
+	if (!tmp)
 		return (NULL);
-	ft_memset(str, 'x', len);
-	count = -1;
-	while (str[++count] && len-- > 0)
-		str[count] = s[count];
-	str[count] = '\0';
-	return (str);
+	i = -1;
+	while (++i < len)
+		tmp[i] = src[start + i];
+	tmp[i] = '\0';
+	return (tmp);
 }
