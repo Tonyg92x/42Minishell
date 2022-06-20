@@ -54,19 +54,31 @@ bool	init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length)
 	return (true);
 }
 
-//	Do all the operation to check if the command is
-//	valid, the path and his arguments and if there is
-//	and output / append mode.
-// bool	command_is_valid(t_command *command, char **split_entry, size_t *i)
-// {
-// 	/*
-// 		2)	Look if the command is a command with access
-// 			and the path to the command. If it is, add path
-// 			of the command and increment iterator. Else free
-// 			the command and return an error for that invalid
-// 			command but continue execution cause other command
-// 			could be valid.
-// 		3)	look if there is arguments or ouputs increment
-// 			iterator for each ones..
-// 	*/
-// }
+static bool	is_command(char *command, t_command_q *command_q)
+{
+	const size_t	index_p = index_to_path(command_q->envp);
+
+	if (index_p == 999999)
+	{
+		ft_putstr_fd("Error: there is no path variable.\n", 2);
+		return (false);
+	}
+	if (!path_is_valid(command, ft_split(command_q->envp[
+			(int)index_p], ':'), command_q))
+		return (false);
+	return (true);
+}
+
+bool	command_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length)
+{
+	if (!split_entry)
+		return (false);
+	if (!is_command(split_entry[(*i)], command_q))
+		return (false);
+	if (!init_cmd(last_command(command_q), split_entry, i, length))
+	{
+		free_command(last_command(command_q));
+		return (false);
+	}
+	return (true);
+}

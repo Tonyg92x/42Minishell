@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/20 11:01:15 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/20 13:09:36 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ PARSING_FILES		=					\
 			entry_analyser.c			\
 			analyser_utils.c			\
 			command_parsing.c			\
+			path.c						\
 
 BUILTINS_FILES		=					\
 			builtins.c					\

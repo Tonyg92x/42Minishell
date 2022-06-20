@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 09:56:19 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 13:09:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 
 //	Look if there is a builtins command
-static bool	simple_builtins(t_command_q *command_q, char **split_entry, size_t
+static bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
 	*i, size_t *length)
 {
 	t_command	*command;
@@ -29,7 +29,6 @@ static bool	simple_builtins(t_command_q *command_q, char **split_entry, size_t
 		return (false);
 	}
 	return (true);
-	// Look if there is an output
 }
 
 //	Look if there is a command.
@@ -52,7 +51,9 @@ static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
 			while (is_white_space(split_entry[(*i)]))
 				(*i)++;
 		}
-		else if (simple_builtins(command_q, split_entry, i, length))
+		else if (builtins_exept(command_q, split_entry, i, length))
+			return (true);
+		else if (command_exept(command_q, split_entry, i, length))
 			return (true);
 		else
 		{
