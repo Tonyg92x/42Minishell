@@ -22,7 +22,8 @@ static size_t	how_much_command(char **split_entry, size_t i, size_t length)
 	limit = i + length;
 	while (i <= limit && split_entry[i])
 	{
-		if (is_white_space(split_entry[i]))
+		if (is_white_space(split_entry[i]) || split_entry[i][0] == 
+			'&' || split_entry[i][0] == '|' || split_entry[i][0] == ';')
 			i++;
 		else
 		{
@@ -41,7 +42,7 @@ bool	init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length)
 
 	if ((*length) == 0)
 		return (false);
-	command->cmd = ft_calloc((*length) + 1, sizeof(char *));
+	command->cmd = ft_calloc(cmd_to_entered + 1, sizeof(char *));
 	cmd_entered = 0;
 	while (cmd_entered < cmd_to_entered)
 	{

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/19 14:14:07 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 09:32:35 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**split_entry(char *entry, int nb_node)
 	size_t			i;
 	size_t			i_r;
 
-	split_entry = ft_calloc(nb_node, sizeof(char *));
+	split_entry = ft_calloc(nb_node + 1, sizeof(char *));
 	if (!split_entry)
 		error_exit(split_entry);
 	i = 0;

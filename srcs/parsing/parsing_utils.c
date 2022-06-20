@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/19 12:55:11 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 09:24:51 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,16 @@ int	how_much_node(char *string)
 	count = 0;
 	while (string[i])
 	{
-		if (ft_is_metacharacter(string[i++]))
+		while (string[i] == '|' || string[i] == '&' || string[i] == ';')
+		{
 			count++;
+			i++;
+		}
+		if (ft_is_metacharacter(string[i]))
+		{
+			count++;
+			i++;
+		}
 		else
 		{
 			count++;
@@ -89,5 +97,5 @@ int	how_much_node(char *string)
 				i++;
 		}
 	}
-	return (count + 1);
+	return (count);
 }

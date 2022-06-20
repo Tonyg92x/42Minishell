@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/19 14:15:36 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/20 09:56:19 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static bool	simple_builtins(t_command_q *command_q, char **split_entry, size_t
 		free_command(command);
 		return (false);
 	}
-	(*i)++;
 	return (true);
 	// Look if there is an output
 }
@@ -56,6 +55,14 @@ static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
 		else if (simple_builtins(command_q, split_entry, i, length))
 			return (true);
 		else
+		{
+			while (split_entry[(*i)] && (*i) < i_limit)
+				(*i)++;
+		}
+	}
+	if (is_white_space(split_entry[(*i)]))
+	{
+		while (is_white_space(split_entry[(*i)]))
 			(*i)++;
 	}
 	return (false);
@@ -88,5 +95,8 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 			command_q->nb_command++;
 		if (command_q->valid_entry == false)
 			return ;
+		while (split_entry[i] && (split_entry[i][0] ==
+			'|' || split_entry[i][0] == '&' || split_entry[i][0] == ';'))
+			i++;
 	}
 }
