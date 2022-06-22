@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 11:56:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 08:23:56 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,18 @@ static void	print_comannd_q(t_command_q *command_q)
 		printf("next = %p\n", temp->next);
 		printf("prev = %p\n", temp->prev);
 		printf("builtins = %d\n", temp->builtins);
-		printf("append_mod = %d\n", temp->append_mode);
-		printf("Delimiter = %s\n", temp->delimiter);
+		x = 0;
+		printf("Here doc :\n");
+		while (temp->here_doc && temp->here_doc[x])
+			printf("%s\n", temp->here_doc[x++]);
 		x = 0;
 		printf("Command :\n");
-		while (temp->cmd[x])
+		while (temp->cmd && temp->cmd[x])
 			printf("%s\n", temp->cmd[x++]);
 		printf("Path = %s\n", temp->path);
 		printf("input = %s\n", temp->input);
-		printf("output = %s\n\n", temp->output);
+		printf("output = %s\n", temp->output);
+		printf("Link with next = %s\n\n", temp->link_next);
 		if (ft_strnstr(temp->cmd[0], "exit", 4))
 			ft_exit(command_q);
 		temp = temp->next;

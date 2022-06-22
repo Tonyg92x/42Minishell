@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   pathHD.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:20:48 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:17:01 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 10:17:53 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static bool	working_path(char **path, t_command_q *command_q, char *command)
 	return (false);
 }
 
-bool	path_is_valid(char *command, char **path, t_command_q *command_q)
+bool	pathValidHD(char *command, char **path, t_command_q *command_q)
 {
 	char	**parsed_path;
 

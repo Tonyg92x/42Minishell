@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
+#    By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/20 13:09:36 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/22 10:37:04 by roxannefour      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ PARSING_FILES		=					\
 			analyser_utils.c			\
 			command_parsing.c			\
 			path.c						\
+			input.c						\
+			input_utils.c				\
 
 BUILTINS_FILES		=					\
 			builtins.c					\
@@ -76,6 +78,7 @@ MAIN_FILES			=					\
 			main.c						\
 			command_utils.c				\
 			envp.c						\
+			ft_realloc.c				\
 
 ENGINE_FILES		=					\
 			exec1.c						\

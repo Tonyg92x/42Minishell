@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/18 09:56:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 10:31:05 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	initialise_command(t_command *command)
 	command->builtins = false;
 	command->input = NULL;
 	command->output = NULL;
-	command->append_mode = false;
-	command->delimiter = NULL;
+	command->here_doc = NULL;
+	command->link_next = NULL;
 }
 
 //	Return the pointer to the last command in the
@@ -36,9 +36,7 @@ t_command	*last_command(t_command_q *command_q)
 		return (NULL);
 	temp = command_q->start;
 	while (temp->next != NULL)
-	{
 		temp = temp->next;
-	}
 	return (temp);
 }
 
@@ -68,8 +66,8 @@ void	free_command(t_command	*command)
 {
 	if (command == NULL)
 		return ;
-	if (command->delimiter != NULL)
-		free(command->delimiter);
+	if (command->here_doc != NULL)
+		ft_free2d(command->here_doc);
 	if (command->output != NULL)
 		free(command->output);
 	if (command->input != NULL)
@@ -78,6 +76,8 @@ void	free_command(t_command	*command)
 		free(command->path);
 	if (command->cmd != NULL)
 		ft_free2d(command->cmd);
+	if (command->link_next != NULL)
+		free(command->link_next);
 	free (command);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry_analyser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 13:09:06 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 10:00:13 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "minishell.h"
 
 //	Look if there is a builtins command
-static bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
+bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
 	*i, size_t *length)
 {
 	t_command	*command;
@@ -30,12 +30,6 @@ static bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
 	}
 	return (true);
 }
-
-//	Look if there is a command.
-// static bool	simple_command(t_command_q *command_q)
-// {
-	
-// }
 
 //	Parse the word to understand the command and his agruments.
 static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
@@ -55,8 +49,11 @@ static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
 			return (true);
 		else if (command_exept(command_q, split_entry, i, length))
 			return (true);
+		else if (input_fd(command_q, split_entry, i))
+			return (true);
 		else
 		{
+			// Entry invalid if it has not returned yet
 			while (split_entry[(*i)] && (*i) < i_limit)
 				(*i)++;
 		}
@@ -69,7 +66,7 @@ static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
 	return (false);
 }
 
-static size_t	how_much_node_in_command(char **split_entry)
+size_t	how_much_node_in_command(char **split_entry)
 {
 	size_t	index;
 
@@ -96,8 +93,7 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 			command_q->nb_command++;
 		if (command_q->valid_entry == false)
 			return ;
-		while (split_entry[i] && (split_entry[i][0] ==
-			'|' || split_entry[i][0] == '&' || split_entry[i][0] == ';'))
-			i++;
+		if (command_q->nb_command > 0 && split_entry[i])
+			analyse_link(command_q, split_entry, &i);
 	}
 }

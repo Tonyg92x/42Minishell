@@ -3,49 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   analyser_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 09:50:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 04:17:03 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
-void	get_command(t_command *command, char **split_entry, size_t *i)
+//	Analyse the link between 2 command
+void	analyse_link(t_command_q *command_q, char ** split_entry, size_t *i)
 {
-	(void)command;
-	(void)split_entry;
-	(void)i;
-	// if (is_builtins(command, split_entry[(*i)]))
-	// 	parse_builtins(command, &split_entry[(*i)], i);
-	// if (!command_is_valid(command, split_entry, i))
-	// 	ft_putstr_fd("Invalid command.\n", 2);
-}
+	t_command	*command;
 
-//	look if there is input in the command
-//	DONT FORGET THE DOCK CODE HERE
-bool	input_fd(t_command_q *command_q, char **split_entry, size_t *i)
-{
-	t_command	*temp;
-
-	if (split_entry[(*i)][0] == '<')
+	if (!command_q || !split_entry[(*i)])
+		return ;
+	if (split_entry[(*i)][0] == '|' || split_entry[(*i)][0] == 
+		'&' || split_entry[(*i)][0] == ';')
 	{
-		temp = new_command(command_q);
-		if (split_entry[(*i) + 1][0] == '<')
+		command = last_command(command_q);
+		if (split_entry[(*i) + 1] && (split_entry[(*i) + 1][0] == '|'
+			|| split_entry[(*i) + 1][0] == '&' || split_entry[(*i) + 1][0] == ';'))
 		{
-			temp->delimiter = "DelemiterKeyword";
-			//	start here dock here ??
-			temp->input = ft_strdup(split_entry[(*i) + 2]);
-			(*i) += 3;
-			return (true);
-		}
-		temp->input = ft_strdup(split_entry[(*i) + 1]);
-		(*i) += 2;
-		return (true);
+			command->link_next = ft_calloc(3, sizeof(char));
+			command->link_next[0] = split_entry[(*i)++][0];
+			command->link_next[1] = split_entry[(*i)++][0];
+			command->link_next[3] = '\0';
+		}	
+		else
+		{
+			command->link_next = ft_calloc(2, sizeof(char));
+			command->link_next[0] = split_entry[(*i)++][0];
+			command->link_next[1] = '\0';
+		} 
 	}
-	return (false);
 }
 
 //	Look if the word is simply a whitespace

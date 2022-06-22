@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 11:37:54 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 10:30:47 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ typedef struct command
 	struct command		*next;
 	struct command		*prev;
 	bool				builtins;
-	bool				append_mode;
-	char				*delimiter;
+	char				**here_doc;
 	char				**cmd;
 	char				*path;
 	char				*input;
 	char				*output;
+	char				*link_next;
 
 }				t_command;
 

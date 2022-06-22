@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
+/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 13:06:26 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/22 10:35:01 by roxannefour      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ bool		quotes_incomplete(char *string, size_t *i);
 bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
 bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
+bool		has_input(char **split_entry, size_t *i);
+char		*has_heredoc(char **split_entry, size_t *i);
+bool		run_heredoc(t_command_q *command_q, char **split_entry, size_t *i, char *delim);
+bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
+size_t		how_much_node_in_command(char **split_entry);
+char		**getHereDocEntry(char **split_entry, size_t *i, char *delim);
+void		advanceInput(char **split_entry, size_t *i);
+
 
 //	Builtins
 bool		is_builtins(char *string);
@@ -52,12 +60,16 @@ t_command	*last_command(t_command_q *command_q);
 void		initialise_commands(t_command_q *command_q);
 t_command	*new_command(t_command_q *command_q);
 void		free_command(t_command	*command);
-void		get_command(t_command *command, char **split_entry, size_t *i);
 bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t *length);
 size_t		index_to_path(char **envp);
 bool		path_is_valid(char *command, char **path, t_command_q *command_q);
+void		analyse_link(t_command_q *command_q, char ** split_entry, size_t *i);
+
 //	Environnement fonctions
 char	**envp_init(char **envp);
+
+//	Fonction pour libft ?
+char	**ft_realloc(char **strings, char *str);
 
 
 #endif
