@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+         #
+#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/22 10:37:04 by roxannefour      ###   ########.fr        #
+#    Updated: 2022/06/22 19:32:12 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ PARSING_FILES		=					\
 			path.c						\
 			input.c						\
 			input_utils.c				\
+			output.c					\
 
 BUILTINS_FILES		=					\
 			builtins.c					\

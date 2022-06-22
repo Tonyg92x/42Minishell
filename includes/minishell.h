@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:35:01 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 19:08:04 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size
 size_t		how_much_node_in_command(char **split_entry);
 char		**getHereDocEntry(char **split_entry, size_t *i, char *delim);
 void		advanceInput(char **split_entry, size_t *i);
+void		parse_output(t_command_q *command_q);
 
 
 //	Builtins

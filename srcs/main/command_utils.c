@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:31:05 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 19:21:29 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	initialise_command(t_command *command)
 	command->output = NULL;
 	command->here_doc = NULL;
 	command->link_next = NULL;
+	command->append_mode = NULL;
 }
 
 //	Return the pointer to the last command in the

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 08:23:56 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 19:34:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_comannd_q(t_command_q *command_q)
 	i = 0;
 	temp = command_q->start;
 	printf("\t\033[4mCommand queue\033[0m\n");
-	printf("Nb_command : %d\n\n", command_q->nb_command);
+	printf("Nb_command : %d\n\n", (int)command_q->nb_command);
 	while (temp)
 	{
 		printf("Command %d\n", i++);

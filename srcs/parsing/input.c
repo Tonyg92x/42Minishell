@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/22 10:35:16 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 18:55:02 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ bool	input_fd(t_command_q *command_q, char **split_entry, size_t *i)
 	if (!command_q || !split_entry || !split_entry[(*i)])
 		return (false);
 	delim = has_heredoc(split_entry, i);
-	if (!delim)
-		return (false);
-	if (run_heredoc(command_q, split_entry, i, delim))
-		return (true);
+	if (delim)
+		return (run_heredoc(command_q, split_entry, i, delim));
 	if (has_input(split_entry, i))
 		return (input_command(command_q, split_entry, i));
 	return (false);

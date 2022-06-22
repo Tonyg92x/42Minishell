@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entry_analyser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:00:13 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 19:35:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 		if (command_q->nb_command > 0 && split_entry[i])
 			analyse_link(command_q, split_entry, &i);
 	}
+	parse_output(command_q);
 }

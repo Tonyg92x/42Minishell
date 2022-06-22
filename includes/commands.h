@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:30:47 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/22 19:34:36 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct command
 	char				*path;
 	char				*input;
 	char				*output;
+	bool				append_mode;
 	char				*link_next;
 
 }				t_command;
@@ -32,7 +33,7 @@ typedef struct command
 typedef struct command_q
 {
 	struct command	*start;
-	int				nb_command;
+	size_t			nb_command;
 	bool			valid_entry;
 	char			**envp;
 }				t_command_q;
