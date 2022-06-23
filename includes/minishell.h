@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 11:29:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 16:12:09 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void		analyse_link(t_command_q *command_q, char ** split_entry, size_t *i);
 
 //	Environnement fonctions
 char	**envp_init(char **envp);
+char	*find_variable(char *str, char **envp);
+int		find_variable_index(char *str, char **envp);
+void	change_pwd(char *pwd, char **envp);
 
 //	Fonction pour libft ?
 char	**ft_realloc(char **strings, char *str);
