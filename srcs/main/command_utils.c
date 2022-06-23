@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 19:21:29 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:44:10 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 //	Setup all value of struct command to NULL
 //	to avoid unwanted behavior
-static void	initialise_command(t_command *command)
+static void	initialise_command(t_command *command,
+	t_command_q *command_q)
 {
 	command->cmd = NULL;
 	command->path = NULL;
@@ -25,6 +26,8 @@ static void	initialise_command(t_command *command)
 	command->here_doc = NULL;
 	command->link_next = NULL;
 	command->append_mode = NULL;
+	command->envp = command_q->envp;
+	command->queue_link = command_q;
 }
 
 //	Return the pointer to the last command in the
@@ -50,13 +53,13 @@ t_command	*new_command(t_command_q *command_q)
 	if (temp == NULL)
 	{
 		command_q->start = ft_calloc(1, sizeof(t_command));
-		initialise_command(command_q->start);
+		initialise_command(command_q->start, command_q);
 		return (command_q->start);
 	}
 	else
 	{
 		temp->next = ft_calloc(1, sizeof(t_command));
-		initialise_command(temp->next);
+		initialise_command(temp->next, command_q);
 		temp->next->prev = temp;
 	}
 	return (temp->next);

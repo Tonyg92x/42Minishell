@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 10:54:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:29:00 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 
 //	Engine
 void		routine_prompt(t_command_q *command_q);
+void		engine(t_command_q *command_q);
+void		builtins_engine(t_command	*command);
+void		command_engine(t_command *command);
 
 //	Parsing functions
 void		parsing(t_command_q *command_q, char *entry);
@@ -51,10 +54,15 @@ char		**get_hd(char **split_entry, size_t *i, char *delim);
 void		advance_input(char **split_entry, size_t *i);
 void		parse_output(t_command_q *command_q);
 
-
 //	Builtins
 bool		is_builtins(char *string);
-void		ft_exit(t_command_q *command_q);
+void		builtin_cd(t_command *command);
+void		builtin_echo(t_command *command);
+void		builtin_env(t_command *command);
+void		builtin_exit(t_command *command);
+void		builtin_export(t_command *command);
+void		builtin_pwd(t_command *command);
+void		builtin_unset(t_command *command);
 
 //	Commands fucntions
 t_command	*last_command(t_command_q *command_q);
