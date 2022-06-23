@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/22 18:55:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 09:01:29 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ bool	run_heredoc(t_command_q *command_q, char **split_entry, size_t
 	if (!HD)
 		return (false);
 	length = how_much_node_in_command(&split_entry[(*i)]);
+	if (length == 0)
+	{
+		ft_free2d(HD);
+		return (false);
+	}
 	if (builtins_exept(command_q, split_entry, i, &length))
 	{
 		command = last_command(command_q);
