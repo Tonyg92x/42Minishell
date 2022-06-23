@@ -1,10 +1,12 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   analyser_utils.c                                   :+:      :+:    :+:   */
+/*   command_parsing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/12 06:47:31 by anthony          ###   ########.fr       */
+/*   Created: 2022/06/23 09:09:55 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/23 09:11:02 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +24,7 @@ static size_t	how_much_command(char **split_entry, size_t i, size_t length)
 	limit = i + length;
 	while (i <= limit && split_entry[i])
 	{
-		if (is_white_space(split_entry[i]) || split_entry[i][0] == 
+		if (is_white_space(split_entry[i]) || split_entry[i][0] ==
 			'&' || split_entry[i][0] == '|' || split_entry[i][0] == ';')
 			i++;
 		else
@@ -35,10 +37,12 @@ static size_t	how_much_command(char **split_entry, size_t i, size_t length)
 }
 
 //	Initialise the exact size for of the command in command.cmd
-bool	init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length)
+bool	init_cmd(t_command *command, char **split_entry
+	, size_t *i, size_t *length)
 {
 	size_t			cmd_entered;
-	const size_t	cmd_to_entered = how_much_command(split_entry, (*i), (*length));
+	const size_t	cmd_to_entered = how_much_command(split_entry,
+			(*i), (*length));
 
 	if ((*length) == 0)
 		return (false);
@@ -66,13 +70,14 @@ static bool	is_command(char *command, t_command_q *command_q)
 	}
 	if (!command_q->envp || !command_q->envp[(int)index_p])
 		return (false);
-	str =  ft_split(command_q->envp[(int)index_p], ':');
+	str = ft_split(command_q->envp[(int)index_p], ':');
 	if (str && !path_is_valid(command, str, command_q))
 		return (false);
 	return (true);
 }
 
-bool	command_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length)
+bool	command_exept(t_command_q *command_q, char **split_entry
+	, size_t *i, size_t *length)
 {
 	if (!split_entry || !split_entry[(*i)])
 		return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyser_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 04:17:03 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/23 09:09:15 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 #include "minishell.h"
 
 //	Analyse the link between 2 command
-void	analyse_link(t_command_q *command_q, char ** split_entry, size_t *i)
+void	analyse_link(t_command_q *command_q, char **split_entry, size_t *i)
 {
 	t_command	*command;
 
 	if (!command_q || !split_entry[(*i)])
 		return ;
-	if (split_entry[(*i)][0] == '|' || split_entry[(*i)][0] == 
+	if (split_entry[(*i)][0] == '|' || split_entry[(*i)][0] ==
 		'&' || split_entry[(*i)][0] == ';')
 	{
 		command = last_command(command_q);
 		if (split_entry[(*i) + 1] && (split_entry[(*i) + 1][0] == '|'
-			|| split_entry[(*i) + 1][0] == '&' || split_entry[(*i) + 1][0] == ';'))
+			|| split_entry[(*i) + 1][0] == '&' || split_entry[(*i)
+				+ 1][0] == ';'))
 		{
 			command->link_next = ft_calloc(3, sizeof(char));
 			command->link_next[0] = split_entry[(*i)++][0];
@@ -37,7 +38,7 @@ void	analyse_link(t_command_q *command_q, char ** split_entry, size_t *i)
 			command->link_next = ft_calloc(2, sizeof(char));
 			command->link_next[0] = split_entry[(*i)++][0];
 			command->link_next[1] = '\0';
-		} 
+		}
 	}
 }
 
@@ -63,7 +64,7 @@ bool	quotes_incomplete(char *string, size_t *i)
 	x = 0;
 	d_q = 0;
 	s_q = 0;
-	while(string[x])
+	while (string[x])
 	{
 		if (string[x] == '\'')
 			s_q++;

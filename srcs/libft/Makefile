@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
+#    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2022/06/08 11:12:56 by anthony          ###   ########.fr        #
+#    Updated: 2022/06/23 09:19:49 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME 			= libft.a
 
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -c
+CFLAGS			= -Wall -Wextra -Werror -c -g
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= srcs/

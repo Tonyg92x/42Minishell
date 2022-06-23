@@ -6,16 +6,23 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 19:35:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 09:15:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
+static bool	parsing_error(char **split_entry, size_t *i, size_t i_limit)
+{
+	while (split_entry[(*i)] && (*i) < i_limit)
+		(*i)++;
+	return (false);
+}
+
 //	Look if there is a builtins command
-bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
-	*i, size_t *length)
+bool	builtins_exept(t_command_q *command_q, char **split_entry,
+	size_t *i, size_t *length)
 {
 	t_command	*command;
 
@@ -32,8 +39,8 @@ bool	builtins_exept(t_command_q *command_q, char **split_entry, size_t
 }
 
 //	Parse the word to understand the command and his agruments.
-static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
-	*i, size_t *length)
+static bool	parse_command(t_command_q *command_q, char **split_entry,
+	size_t *i, size_t *length)
 {
 	size_t		i_limit;
 
@@ -52,16 +59,7 @@ static bool	parse_command(t_command_q *command_q, char **split_entry, size_t
 		else if (input_fd(command_q, split_entry, i))
 			return (true);
 		else
-		{
-			// Entry invalid if it has not returned yet
-			while (split_entry[(*i)] && (*i) < i_limit)
-				(*i)++;
-		}
-	}
-	if (is_white_space(split_entry[(*i)]))
-	{
-		while (is_white_space(split_entry[(*i)]))
-			(*i)++;
+			return (parsing_error(split_entry, i, i_limit));
 	}
 	return (false);
 }
@@ -71,7 +69,7 @@ size_t	how_much_node_in_command(char **split_entry)
 	size_t	index;
 
 	index = 0;
-	while (split_entry[index] && split_entry[index][0] != 
+	while (split_entry[index] && split_entry[index][0] !=
 			'|' && split_entry[index][0] != '&' && split_entry
 			[index][0] != ';')
 		index++;

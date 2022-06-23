@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:51:01 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/23 08:57:26 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 09:31:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ char	**getHereDocEntry(char **split_entry, size_t *i, char *delim)
 	char	**retour;
 	char	*line;
 
-	advanceInput(split_entry, i);
+	advance_input(split_entry, i);
 	(*i)++;
-	advanceInput(split_entry, i);
+	advance_input(split_entry, i);
 	retour = ft_calloc(1, sizeof(char *));
 	retour[0] = NULL;
 	line = ft_calloc(1, sizeof(char *));
