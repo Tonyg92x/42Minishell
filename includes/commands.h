@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 19:34:36 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:28:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef struct command
 	char				*output;
 	bool				append_mode;
 	char				*link_next;
-
+	char				**envp;
+	struct command_q	*queue_link;
 }				t_command;
 
 typedef struct command_q

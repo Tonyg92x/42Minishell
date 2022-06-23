@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 11:52:09 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:01:05 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	routine_prompt(t_command_q *command_q)
 		add_history(entry);
 		parsing(command_q, entry);
 		free(entry);
+		engine(command_q);
 		initialise_commands(command_q);
 	}
 	rl_clear_history();

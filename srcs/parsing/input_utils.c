@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:51:01 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/22 10:39:04 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/23 10:57:05 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,20 @@ static bool	here_doc_done(char *delim, char *line)
 
 bool	has_input(char **split_entry, size_t *i)
 {
-	size_t temp;
+	size_t	temp;
 
-	temp = (*i) + 1;
+	temp = (*i);
 	while (split_entry[temp] && split_entry[temp][0] == ' ')
 		temp++;
-	if (!split_entry[temp] || !split_entry[temp + 1] || !split_entry[temp][0] || !split_entry[temp + 1][0])
+	if (!split_entry[temp] || !split_entry[temp + 1]
+		||!split_entry[temp][0] || !split_entry[temp + 1][0])
 		return (false);
 	if (split_entry[temp][0] == '<')
+	{
+		(*i)++;
+		advance_input(split_entry, i);
 		return (true);
+	}
 	return (false);
 }
 
@@ -49,7 +54,7 @@ char	*has_heredoc(char **split_entry, size_t *i)
 		temp = (*i) + 2;
 		while (split_entry[temp] && (split_entry[temp][0]) == ' ')
 			temp++;
-		if (!split_entry[temp] || !split_entry[temp + 1])
+		if (!split_entry[temp])
 			return (false);
 		delim = ft_calloc(1, sizeof(char *));
 		delim = ft_strdup(split_entry[temp]);
@@ -59,16 +64,14 @@ char	*has_heredoc(char **split_entry, size_t *i)
 }
 
 //	Get the entry routine
-char	**getHereDocEntry(char **split_entry, size_t *i, char *delim)
+char	**get_hd(char **split_entry, size_t *i, char *delim)
 {
 	char	**retour;
 	char	*line;
 
-	advanceInput(split_entry, i);
+	advance_input(split_entry, i);
 	(*i)++;
-	advanceInput(split_entry, i);
-	if (!split_entry[(*i)])
-		return (NULL);
+	advance_input(split_entry, i);
 	retour = ft_calloc(1, sizeof(char *));
 	retour[0] = NULL;
 	line = ft_calloc(1, sizeof(char *));
@@ -76,9 +79,9 @@ char	**getHereDocEntry(char **split_entry, size_t *i, char *delim)
 	while (true)
 	{
 		free(line);
-		line = readline("");
+		line = readline("> ");
 		if (here_doc_done(delim, line))
-			break;
+			break ;
 		retour = ft_realloc(retour, line);
 	}
 	free(line);

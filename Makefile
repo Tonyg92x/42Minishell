@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/22 19:32:12 by aguay            ###   ########.fr        #
+#    Updated: 2022/06/23 11:11:30 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,16 +51,16 @@ LIBFT_INC		= $(SRCS_DIR)libft/includes/
 SRCS_FILES			=					\
 
 PARSING_FILES		=					\
-			parsing.c					\
-			parsing_utils.c				\
-			split_entry.c				\
-			entry_analyser.c			\
 			analyser_utils.c			\
 			command_parsing.c			\
-			path.c						\
-			input.c						\
+			entry_analyser.c			\
 			input_utils.c				\
+			input.c						\
 			output.c					\
+			parsing_utils.c				\
+			parsing.c					\
+			path.c						\
+			split_entry.c				\
 
 BUILTINS_FILES		=					\
 			builtins.c					\
@@ -76,13 +76,15 @@ PROMPT_FILES		=					\
 			prompt.c					\
 
 MAIN_FILES			=					\
-			main.c						\
 			command_utils.c				\
 			envp.c						\
 			ft_realloc.c				\
+			main.c						\
 
 ENGINE_FILES		=					\
-			exec1.c						\
+			builtins_engine.c			\
+			command_engine.c			\
+			engine.c					\
 
 INCLUDES_FILES		=					\
 			commands.h					\

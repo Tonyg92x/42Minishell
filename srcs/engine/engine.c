@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 11:16:20 by aguay            ###   ########.fr       */
+/*   Created: 2022/06/23 10:59:56 by aguay             #+#    #+#             */
+/*   Updated: 2022/06/23 11:10:37 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
-void	builtin_env(t_command *command)
+void	engine(t_command_q *command_q)
 {
-	(void) command;
+	size_t		i;
+	t_command	*command;
+
+	i = 0;
+	command = command_q->start;
+	while (i < command_q->nb_command)
+	{
+		if (command->builtins == true)
+			builtins_engine(command);
+		else
+			command_engine(command);
+		if (command->next)
+			command = command->next;
+		else
+			break ;
+	}
 }

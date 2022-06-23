@@ -6,14 +6,14 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 08:04:14 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/20 11:58:49 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 09:16:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
-static size_t	getEnvpSize(char **envp)
+static size_t	get_envp_size(char **envp)
 {
 	size_t	i;
 
@@ -27,16 +27,16 @@ static size_t	getEnvpSize(char **envp)
 
 char	**envp_init(char **envp)
 {
-	char	**newEnvp;
+	char	**new_envp;
 	size_t	i;
 
 	i = 0;
-	newEnvp = ft_calloc(getEnvpSize(envp), sizeof(char *));
+	new_envp = ft_calloc(get_envp_size(envp), sizeof(char *));
 	while (envp[i])
 	{
-		newEnvp[i] = ft_strdup(envp[i]);
+		new_envp[i] = ft_strdup(envp[i]);
 		i++;
 	}
-	newEnvp[i] = NULL;
-	return (newEnvp);
+	new_envp[i] = NULL;
+	return (new_envp);
 }

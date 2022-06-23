@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 07:41:53 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/22 08:20:58 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/23 10:50:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static size_t	get_size(char **strings)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (strings[i])

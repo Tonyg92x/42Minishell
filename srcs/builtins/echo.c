@@ -6,11 +6,14 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/07 15:03:48 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 11:16:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "minishell.h"
 
-
+void	builtin_echo(t_command *command)
+{
+	(void) command;
+}
