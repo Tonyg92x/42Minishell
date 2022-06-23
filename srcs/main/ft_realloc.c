@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 07:41:53 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/23 09:39:24 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 10:50:44 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	get_size(char **strings)
 }
 
 //	Allocate the string passed to the char **
-char	**ft_realloc( chchar **strings,ar *str)
+char	**ft_realloc(char **strings, char *str)
 {
 	char			**new_str;
 	size_t			i;

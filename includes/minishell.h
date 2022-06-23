@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 09:23:53 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 10:54:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		*has_heredoc(char **split_entry, size_t *i);
 bool		run_heredoc(t_command_q *command_q, char **split_entry, size_t *i, char *delim);
 bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
 size_t		how_much_node_in_command(char **split_entry);
-char		**getHereDocEntry(char **split_entry, size_t *i, char *delim);
+char		**get_hd(char **split_entry, size_t *i, char *delim);
 void		advance_input(char **split_entry, size_t *i);
 void		parse_output(t_command_q *command_q);
 

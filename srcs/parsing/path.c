@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxannefournier <roxannefournier@studen    +#+  +:+       +#+        */
+/*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:20:48 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/22 10:17:01 by roxannefour      ###   ########.fr       */
+/*   Updated: 2022/06/23 10:53:16 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t	index_to_path(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (envp[i][0] == 'P' && envp[i][1] == 
+		if (envp[i][0] == 'P' && envp[i][1] ==
 			'A' && envp[i][2] == 'T' && envp[i][3] ==
 			'H' && envp[i][4] == '=')
 			return (i);
