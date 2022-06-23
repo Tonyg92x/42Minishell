@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 12:30:04 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 12:54:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int	main(int argc, char **argv, char **envp)
 	(void) argv;
 	init_command_queue(&command_q, envp);
 	printf("\033[33mWelcome \033[31m%s\033[0m\n", getenv("USER"));
+	chdir(getenv("HOME"));
 	routine_prompt(&command_q);
 }

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:20:48 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 10:53:16 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/23 12:53:28 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ static bool	working_path(char **path, t_command_q *command_q, char *command)
 		temp = ft_strjoin(path[i], command);
 		if (access(temp, F_OK) == 0)
 		{
-			free(temp);
 			path_command = new_command(command_q);
-			path_command->path = ft_strdup(path[i]);
+			path_command->path = temp;
 			ft_free2d(path);
 			return (true);
 		}
