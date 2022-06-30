@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:20:48 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 12:53:28 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:09 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 //	Add a backslath after every string to test
@@ -53,12 +52,12 @@ static bool	working_path(char **path, t_command_q *command_q, char *command)
 	int			i;
 
 	i = 0;
+	path_command = last_command(command_q);
 	while (path[i])
 	{
 		temp = ft_strjoin(path[i], command);
 		if (access(temp, F_OK) == 0)
 		{
-			path_command = new_command(command_q);
 			path_command->path = temp;
 			ft_free2d(path);
 			return (true);
@@ -67,6 +66,7 @@ static bool	working_path(char **path, t_command_q *command_q, char *command)
 		i++;
 	}
 	ft_free2d(path);
+	path_command->valid = false;
 	return (false);
 }
 

@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 11:44:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 //	Setup all value of struct command to NULL
@@ -18,6 +17,7 @@
 static void	initialise_command(t_command *command,
 	t_command_q *command_q)
 {
+	command->valid = true;
 	command->cmd = NULL;
 	command->path = NULL;
 	command->builtins = false;

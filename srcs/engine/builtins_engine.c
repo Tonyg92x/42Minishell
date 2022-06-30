@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:05:55 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 11:25:01 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:50 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 void	builtins_engine(t_command	*command)

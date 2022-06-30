@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/28 14:41:21 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:29 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 static bool	parsing_error(char **split_entry, size_t *i, size_t i_limit)
@@ -28,13 +27,10 @@ bool	builtins_exept(t_command_q *command_q, char **split_entry,
 
 	if (!is_builtins(split_entry[(*i)]))
 		return (false);
-	command = new_command(command_q);
+	command = last_command(command_q);
 	command->builtins = true;
 	if (!init_cmd(command, split_entry, i, length))
-	{
-		free_command(command);
-		return (false);
-	}
+		command->valid = false;
 	return (true);
 }
 
@@ -85,14 +81,15 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 	while (split_entry[i] && (int)i < nb_node)
 	{
 		length = how_much_node_in_command(&split_entry[i]);
+		new_command(command_q);
 		if (quotes_incomplete(split_entry[i], &i))
 			i += length;
-		if (parse_command(command_q, split_entry, &i, &length) == true)
-			command_q->nb_command++;
-		if (command_q->valid_entry == false)
-			return ;
+		parse_command(command_q, split_entry, &i, &length);
+		command_q->nb_command++;
 		if (command_q->nb_command > 0 && split_entry[i])
 			analyse_link(command_q, split_entry, &i);
+		if (last_command(command_q)->valid == false)
+			i++;
 	}
 	parse_output(command_q);
 }

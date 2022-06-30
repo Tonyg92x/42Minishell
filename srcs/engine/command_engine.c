@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:08:29 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 12:52:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 void	command_engine(t_command *command)

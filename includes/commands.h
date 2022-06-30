@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/28 14:54:26 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 14:56:56 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct command
 {
+	bool				valid;
 	struct command		*next;
 	struct command		*prev;
 	bool				builtins;

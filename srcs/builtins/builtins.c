@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 09:13:32 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/19 13:25:27 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:11:00 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 //	Look if the command passed in string is a builtins

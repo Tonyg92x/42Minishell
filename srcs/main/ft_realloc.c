@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 07:41:53 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/23 10:50:44 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:43 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 static size_t	get_size(char **strings)

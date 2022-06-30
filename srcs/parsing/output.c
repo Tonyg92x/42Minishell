@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:02:21 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 10:57:13 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:19 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 static void	parse_cmd_output(t_command *command)

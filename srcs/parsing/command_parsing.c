@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 09:09:55 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 09:11:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:32 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 static size_t	how_much_command(char **split_entry, size_t i, size_t length)
@@ -84,9 +83,6 @@ bool	command_exept(t_command_q *command_q, char **split_entry
 	if (!is_command(split_entry[(*i)], command_q))
 		return (false);
 	if (!init_cmd(last_command(command_q), split_entry, i, length))
-	{
-		free_command(last_command(command_q));
-		return (false);
-	}
+		return (true);
 	return (true);
 }

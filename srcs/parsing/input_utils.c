@@ -6,11 +6,10 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:51:01 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/23 10:57:05 by aguay            ###   ########.fr       */
+/*   Updated: 2022/06/30 16:10:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "minishell.h"
 
 static bool	here_doc_done(char *delim, char *line)
