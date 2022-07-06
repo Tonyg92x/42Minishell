@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 11:12:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 14:29:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,52 @@ bool	is_white_space(char *string)
 	if (string[0] == ' ' || string[0] == '\n' || string[0] == '\t')
 		return (true);
 	return (false);
+}
+
+static void	fixItBoy(char *string, size_t start, size_t end)
+{
+	while (string[start + 1])
+	{
+		string[start] = string[start + 1];
+		start++;
+		if (start == end - 1 && !string[start + 1])
+		{
+			string[start] = '\0';
+			return ;
+		}
+		else if (start == end - 1)
+			start++;
+	}
+	string[start - 1] = '\0';
+}
+
+static void	is_closed(char *string, size_t *i)
+{
+	const char		quotes = string[(*i)];
+	const size_t	pos_begin = (*i)++;
+
+	while (string[(*i)])
+	{
+		if (string[(*i)] == quotes)
+		{
+			fixItBoy(string, pos_begin, (*i));
+			return ;
+		}
+		(*i)++;
+	}
+}
+
+//	Trim the quotes if they are closed
+void	quotes_manager(char *string)
+{
+	size_t	i;
+
+	i = 0;
+	while (string[i])
+	{
+		if (string[i] == '\'' || string[i] == '\"')
+			is_closed(&string[i], &i);
+		else
+			i++;
+	}
 }

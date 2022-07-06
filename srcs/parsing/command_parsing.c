@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 09:09:55 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:32 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 13:56:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool	init_cmd(t_command *command, char **split_entry
 	cmd_entered = 0;
 	while (cmd_entered < cmd_to_entered)
 	{
+		quotes_manager(split_entry[(*i)]);
 		command->cmd[cmd_entered++] = ft_strdup(split_entry[(*i)++]);
 		while (split_entry[(*i)] && is_white_space(split_entry[(*i)]))
 			(*i)++;

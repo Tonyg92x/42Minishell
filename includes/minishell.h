@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 10:48:43 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 14:12:34 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		**split_entry(char *entry, int nb_node);
 int			how_much_node(char *string);
 void		analyse_entry(t_command_q *command_q, char **split_entry, int nb_node);
 bool		is_white_space(char *string);
-bool		quotes_incomplete(char *string, size_t *i);
+void		quotes_manager(char *string);
 bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
 bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
