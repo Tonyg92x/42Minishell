@@ -6,16 +6,20 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 11:12:22 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 13:55:56 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	parsing_error(char **split_entry, size_t *i, size_t i_limit)
+static bool	parsing_error(char **split_entry, size_t *i, size_t *length, t_command_q *command_q)
 {
-	while (split_entry[(*i)] && (*i) < i_limit)
-		(*i)++;
+	t_command	*command;
+	int			x;
+
+	x = 0;
+	command = last_command(command_q);
+	init_cmd(last_command(command_q), split_entry, i, length);
 	return (false);
 }
 
@@ -55,7 +59,7 @@ static bool	parse_command(t_command_q *command_q, char **split_entry,
 		else if (input_fd(command_q, split_entry, i))
 			return (true);
 		else
-			return (parsing_error(split_entry, i, i_limit));
+			return (parsing_error(split_entry, i, length, command_q));
 	}
 	return (false);
 }
