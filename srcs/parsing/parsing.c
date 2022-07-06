@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:12 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 12:41:40 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 // 	printf("Nb_command : %d\n\n", (int)command_q->nb_command);
 // 	while (temp)
 // 	{
+// 		printf("Valid command : %d\n", temp->valid);
 // 		printf("Command %d\n", i++);
 // 		printf("next = %p\n", temp->next);
 // 		printf("prev = %p\n", temp->prev);

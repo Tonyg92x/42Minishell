@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/06/23 11:11:30 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/06 10:50:17 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME 			= minishell
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= gcc
 
-CFLAGS			= -Wall -Wextra -Werror -g
+CFLAGS			= -Wall -Wextra -Werror
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= srcs/
