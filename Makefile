@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/06 10:50:17 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/06 12:56:16 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,6 +163,9 @@ opti: obj $(NAME)
 
 leak: obj $(NAME)
 	@valgrind ./minishell
+
+setup:
+	@rm -rf LISCENSE images README.md
 
 ## ----- CLEAN COMMANDS ----- ##
 clean:
