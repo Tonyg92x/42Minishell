@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:29 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/06 11:12:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 	{
 		length = how_much_node_in_command(&split_entry[i]);
 		new_command(command_q);
-		if (quotes_incomplete(split_entry[i], &i))
-			i += length;
 		parse_command(command_q, split_entry, &i, &length);
 		command_q->nb_command++;
 		if (command_q->nb_command > 0 && split_entry[i])
