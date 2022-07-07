@@ -6,11 +6,23 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:04 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 16:50:57 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char*	getLesDeux(char *string, size_t *i)
+{
+	char	*retour;
+
+	retour = ft_calloc(3, sizeof(char));
+	retour[0] = string[0];
+	retour[1] = string[1];
+	retour[2] = '\0';
+	(*i) += 2;
+	return (retour);
+}
 
 char	*get_word(char *string, size_t *i)
 {
@@ -33,7 +45,7 @@ char	*get_word(char *string, size_t *i)
 	return (retour);
 }
 
-char	*get_char(char c)
+char	*get_char(char c, size_t *i)
 {
 	char	*retour;
 
@@ -42,24 +54,21 @@ char	*get_char(char c)
 		return (NULL);
 	retour[0] = c;
 	retour[1] = '\0';
+	(*i)++;
 	return (retour);
 }
 
 static void	parse_char(char **split_entry, char *entry, size_t *i, size_t *i_r)
 {
-	if (ft_is_metacharacter(entry[(*i)]))
-	{
-		split_entry[(*i_r)] = get_char(entry[(*i)]);
-		if (!split_entry[(*i_r)])
-			error_exit(split_entry);
-		(*i)++;
-	}
+	if (entry[*i + 1] && ((entry[(*i)] == '<' && entry[(*i) + 1] == 
+			'<') || (entry[(*i)] == '>' && entry[(*i) + 1] == '<')))
+		split_entry[(*i_r)] = getLesDeux(&entry[(*i)], i);
+	else if (ft_is_metacharacter(entry[(*i)]))
+		split_entry[(*i_r)] = get_char(entry[(*i)], i);
 	else
-	{
 		split_entry[(*i_r)] = get_word(&entry[(*i)], i);
-		if (!split_entry[(*i_r)])
-			error_exit(split_entry);
-	}
+	if (!split_entry[(*i_r)])
+		error_exit(split_entry);
 	(*i_r)++;
 }
 

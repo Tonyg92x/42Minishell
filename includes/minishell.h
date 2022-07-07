@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 14:12:34 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 16:49:33 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool		ft_is_metacharacter(char c);
 size_t		word_size(char *string);
 char		**error_exit(char **s_entry);
 char		*get_word(char *string, size_t *i);
-char		*get_char(char c);
+char		*get_char(char c, size_t *i);
 char		**split_entry(char *entry, int nb_node);
 int			how_much_node(char *string);
 void		analyse_entry(t_command_q *command_q, char **split_entry, int nb_node);
@@ -75,13 +75,13 @@ bool		path_is_valid(char *command, char **path, t_command_q *command_q);
 void		analyse_link(t_command_q *command_q, char ** split_entry, size_t *i);
 
 //	Environnement fonctions
-char	**envp_init(char **envp);
-char	*find_variable(char *str, char **envp);
-int		find_variable_index(char *str, char **envp);
-void	change_pwd(char *pwd, char **envp);
+char		**envp_init(char **envp);
+char		*find_variable(char *str, char **envp);
+int			find_variable_index(char *str, char **envp);
+void		change_pwd(char *pwd, char **envp);
 
 //	Fonction pour libft ?
-char	**ft_realloc(char **strings, char *str);
+char		**ft_realloc(char **strings, char *str);
 
 
 #endif
