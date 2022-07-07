@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 13:55:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 12:15:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	parsing_error(char **split_entry, size_t *i, size_t *length, t_comma
 
 	x = 0;
 	command = last_command(command_q);
-	init_cmd(last_command(command_q), split_entry, i, length);
+	init_cmd(command, split_entry, i, length);
 	return (false);
 }
 
@@ -90,8 +90,6 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 		command_q->nb_command++;
 		if (command_q->nb_command > 0 && split_entry[i])
 			analyse_link(command_q, split_entry, &i);
-		if (last_command(command_q)->valid == false)
-			i++;
 	}
 	parse_output(command_q);
 }

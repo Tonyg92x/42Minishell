@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 14:29:58 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 11:45:59 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	quotes_manager(char *string)
 	while (string[i])
 	{
 		if (string[i] == '\'' || string[i] == '\"')
-			is_closed(&string[i], &i);
+			is_closed(string, &i);
 		else
 			i++;
 	}

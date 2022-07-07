@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/06 12:56:16 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/07 14:13:24 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,7 +156,8 @@ obj:
 
 ## ----- make options ----- #
 debug: CFLAGS += -g
-debug: obj $(NAME)
+debug:	fclean obj $(NAME)
+
 
 opti: CFLAGS += -O3
 opti: obj $(NAME)
@@ -175,6 +176,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(LIBFT_DIR)libft.a
+	@rm -rf $(NAME).dSYM*
 
 re: fclean all
 

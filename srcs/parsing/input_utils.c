@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:51:01 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 13:56:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ bool	has_input(char **split_entry, size_t *i)
 	while (split_entry[temp] && split_entry[temp][0] == ' ')
 		temp++;
 	if (!split_entry[temp] || !split_entry[temp + 1]
-		||!split_entry[temp][0] || !split_entry[temp + 1][0])
+		|| !split_entry[temp][0] || !split_entry[temp + 1][0]
+		|| !split_entry[temp + 1])
 		return (false);
 	if (split_entry[temp][0] == '<')
 	{

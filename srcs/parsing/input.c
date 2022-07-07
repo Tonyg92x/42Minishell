@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:23 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:11:46 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	advance_input(char **split_entry, size_t *i)
 {
-	(*i)++;
+	if (!split_entry[(*i)])
+		return;
 	while (split_entry[(*i)] && (is_white_space(split_entry[(*i)])
 			|| split_entry[(*i)][0] == '<'))
 		(*i)++;
@@ -27,26 +28,22 @@ static bool	input_command(t_command_q *command_q, char **split_entry, size_t *i)
 	size_t		length;
 
 	inpu = ft_strdup(split_entry[(*i)]);
+	command = last_command(command_q);
+	command->input = inpu;
 	if (!inpu)
 		return (false);
-	advance_input(split_entry, i);
+	(*i)++;
 	if (!split_entry[(*i)])
 		return (false);
+	advance_input(split_entry, i);
 	length = how_much_node_in_command(&split_entry[(*i)]);
 	if (builtins_exept(command_q, split_entry, i, &length))
-	{
-		command = last_command(command_q);
-		command->input = inpu;
-		return (true);
-	}
+		command->valid = true;
 	else if (command_exept(command_q, split_entry, i, &length))
-	{
-		command = last_command(command_q);
-		command->input = inpu;
-		return (true);
-	}
-	free(inpu);
-	return (false);
+		command->valid = true;
+	else
+		(*i)++;
+	return (true);
 }
 
 //	look if there is input in the command
