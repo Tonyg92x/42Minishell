@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 08:37:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:34:23 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	print_comannd_q(t_command_q *command_q)
 		printf("Path = %s\n", temp->path);
 		printf("input = %s\n", temp->input);
 		printf("output = %s\n", temp->output);
+		printf("append_mod = %d\n", temp->append_mode);
 		printf("Link with next = %s\n\n", temp->link_next);
 		temp = temp->next;
 	}
@@ -53,6 +54,9 @@ void	parsing(t_command_q *command_q, char *entry)
 
 	nb_node = how_much_node(entry);
 	entry_sp = split_entry(entry, nb_node);
+	int	i = 0;
+	while (entry_sp[i])
+		printf("%s\n", entry_sp[i++]);
 	if (!entry_sp)
 		return ;
 	analyse_entry(command_q, entry_sp, nb_node);

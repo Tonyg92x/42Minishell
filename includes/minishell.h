@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/07 16:49:33 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:13:55 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void		change_pwd(char *pwd, char **envp);
 
 //	Fonction pour libft ?
 char		**ft_realloc(char **strings, char *str);
+char		**ft_revRealloc(char **array, void *ptr);
 
 
 #endif

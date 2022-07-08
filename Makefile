@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/07 14:13:24 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/08 09:04:36 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ MAIN_FILES			=					\
 			command_utils.c				\
 			envp.c						\
 			ft_realloc.c				\
+			ft_revRealloc.c				\
 			main.c						\
 
 ENGINE_FILES		=					\

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:57 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:33:37 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*get_char(char c, size_t *i)
 static void	parse_char(char **split_entry, char *entry, size_t *i, size_t *i_r)
 {
 	if (entry[*i + 1] && ((entry[(*i)] == '<' && entry[(*i) + 1] == 
-			'<') || (entry[(*i)] == '>' && entry[(*i) + 1] == '<')))
+			'<') || (entry[(*i)] == '>' && entry[(*i) + 1] == '>')))
 		split_entry[(*i_r)] = getLesDeux(&entry[(*i)], i);
 	else if (ft_is_metacharacter(entry[(*i)]))
 		split_entry[(*i_r)] = get_char(entry[(*i)], i);

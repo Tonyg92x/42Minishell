@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 19:02:21 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:19 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 09:30:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,18 @@ static void	parse_cmd_output(t_command *command)
 	{
 		if (command->cmd[i][0] == '>')
 		{
-			command->cmd[i++][0] = '\0';
-			if (command->cmd[i] && command->cmd[i][0] == '>')
-			{
+			if (command->cmd[i][1] && command->cmd[i][1] == '>')
 				command->append_mode = true;
-				command->cmd[i++][0] = '\0';
-			}
-			if (!command->cmd || !command->cmd[i])
-			{
+			else
 				command->append_mode = false;
-				return ;
-			}
+			command->cmd = ft_revRealloc(command->cmd, command->cmd[i]);
+			if (command->output)
+				free(command->output);
 			command->output = ft_strdup(command->cmd[i]);
-			command->cmd[i][0] = '\0';
+			command->cmd = ft_revRealloc(command->cmd, command->cmd[i]);
 		}
-		i++;
+		else
+			i++;
 	}
 }
 
