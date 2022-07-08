@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/07 14:11:46 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 08:36:07 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,14 @@ static bool	get_command(t_command_q *command_q, char **split_entry,
 	size_t		length;
 
 	length = how_much_node_in_command(&split_entry[(*i)]);
+	last_command(command_q)->here_doc = hd;
+	last_command(command_q)->valid = true;
 	if (length == 0)
 		ft_free2d(hd);
 	else if (builtins_exept(command_q, split_entry, i, &length))
-	{
-		last_command(command_q)->here_doc = hd;
 		return (true);
-	}
 	else if (command_exept(command_q, split_entry, i, &length))
-	{
-		last_command(command_q)->here_doc = hd;
 		return (true);
-	}
 	last_command(command_q)->valid = false;
 	return (false);
 }

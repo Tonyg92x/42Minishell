@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/07 16:32:23 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 08:37:37 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ void	parsing(t_command_q *command_q, char *entry)
 
 	nb_node = how_much_node(entry);
 	entry_sp = split_entry(entry, nb_node);
-	int i = 0;
-	while (entry_sp[i])
-		printf("%s\n", entry_sp[i++]);
 	if (!entry_sp)
 		return ;
 	analyse_entry(command_q, entry_sp, nb_node);

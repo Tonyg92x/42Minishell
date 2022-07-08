@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:51:01 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/07 13:56:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 08:34:05 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,16 @@ char	*has_heredoc(char **split_entry, size_t *i)
 	char	*delim;
 	size_t	temp;
 
-	if (!split_entry[(*i) + 1] || !split_entry[(*i) + 2])
+	if (!split_entry[(*i) + 1])
 		return (false);
-	if (split_entry[(*i)][0] == '<' && split_entry
-		[(*i) + 1][0] == '<' && split_entry[(*i) + 2])
+	if (split_entry[(*i)][1] && split_entry[(*i)][1] &&
+		split_entry[(*i)][0] == '<' && split_entry[(*i)][1] == '<')
 	{
-		temp = (*i) + 2;
+		temp = (*i) + 1;
 		while (split_entry[temp] && (split_entry[temp][0]) == ' ')
 			temp++;
 		if (!split_entry[temp])
 			return (false);
-		delim = ft_calloc(1, sizeof(char *));
 		delim = ft_strdup(split_entry[temp]);
 		return (delim);
 	}
