@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 09:34:23 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 13:48:20 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,25 @@ static void	print_comannd_q(t_command_q *command_q)
 		while (temp->cmd && temp->cmd[x])
 			printf("%s\n", temp->cmd[x++]);
 		printf("Path = %s\n", temp->path);
-		printf("input = %s\n", temp->input);
-		printf("output = %s\n", temp->output);
+		printf("input = %d\n", temp->fdIN);
+		printf("output = %d\n", temp->fdOUT);
 		printf("append_mod = %d\n", temp->append_mode);
 		printf("Link with next = %s\n\n", temp->link_next);
 		temp = temp->next;
 	}
 }
 
-void	parsing(t_command_q *command_q, char *entry)
+bool	parsing(t_command_q *command_q, char *entry)
 {
 	char	**entry_sp;
 	int		nb_node;
 
 	nb_node = how_much_node(entry);
 	entry_sp = split_entry(entry, nb_node);
-	int	i = 0;
-	while (entry_sp[i])
-		printf("%s\n", entry_sp[i++]);
 	if (!entry_sp)
-		return ;
-	analyse_entry(command_q, entry_sp, nb_node);
+		return (false);
+	if (!analyse_entry(command_q, entry_sp, nb_node))
+		return (false);
 	print_comannd_q(command_q);
 	ft_free2d(entry_sp);
 }

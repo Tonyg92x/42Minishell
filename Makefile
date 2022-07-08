@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/08 09:04:36 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/08 11:43:21 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ PARSING_FILES		=					\
 			parsing_utils.c				\
 			parsing.c					\
 			path.c						\
+			redirection.c				\
 			split_entry.c				\
 
 BUILTINS_FILES		=					\

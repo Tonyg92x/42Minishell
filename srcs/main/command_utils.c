@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 13:21:54 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	initialise_command(t_command *command,
 	command->cmd = NULL;
 	command->path = NULL;
 	command->builtins = false;
-	command->input = NULL;
-	command->output = NULL;
+	command->fdIN = 0;
+	command->fdOUT = 1;
 	command->here_doc = NULL;
 	command->link_next = NULL;
 	command->append_mode = NULL;
@@ -72,10 +72,6 @@ void	free_command(t_command	*command)
 		return ;
 	if (command->here_doc != NULL)
 		ft_free2d(command->here_doc);
-	if (command->output != NULL)
-		free(command->output);
-	if (command->input != NULL)
-		free(command->input);
 	if (command->path != NULL)
 		free(command->path);
 	if (command->cmd != NULL)

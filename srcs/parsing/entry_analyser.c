@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 08:31:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 13:44:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static bool	parse_command(t_command_q *command_q, char **split_entry,
 			return (true);
 		else if (command_exept(command_q, split_entry, i, length))
 			return (true);
-		else if (input_fd(command_q, split_entry, i))
-			return (true);
 		else
 			return (parsing_error(split_entry, i, length, command_q));
 	}
@@ -76,7 +74,7 @@ size_t	how_much_node_in_command(char **split_entry)
 	return (index);
 }
 
-void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
+bool	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 {
 	size_t	i;
 	size_t	length;
@@ -85,11 +83,12 @@ void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
 	while (split_entry[i] && (int)i < nb_node)
 	{
 		length = how_much_node_in_command(&split_entry[i]);
-		new_command(command_q);
+		if (!ft_redir(new_command(command_q), &split_entry, &length, &i))
+			return (false);
 		parse_command(command_q, split_entry, &i, &length);
 		command_q->nb_command++;
 		if (command_q->nb_command > 0 && split_entry[i])
 			analyse_link(command_q, split_entry, &i);
 	}
-	parse_output(command_q);
+	return (true);
 }
