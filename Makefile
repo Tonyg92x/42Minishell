@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/08 11:43:21 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/08 15:43:58 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,9 +54,7 @@ PARSING_FILES		=					\
 			analyser_utils.c			\
 			command_parsing.c			\
 			entry_analyser.c			\
-			input_utils.c				\
 			input.c						\
-			output.c					\
 			parsing_utils.c				\
 			parsing.c					\
 			path.c						\

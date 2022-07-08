@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 13:20:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 15:33:42 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct command
 	char				**here_doc;
 	char				**cmd;
 	char				*path;
-	int					fdIN;
-	int					fdOUT;
+	char				*input;
+	char				*output;
 	bool				append_mode;
 	char				*link_next;
 	char				**envp;

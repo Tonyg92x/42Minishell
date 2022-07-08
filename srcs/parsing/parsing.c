@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 13:48:20 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 16:02:00 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	print_comannd_q(t_command_q *command_q)
 		while (temp->cmd && temp->cmd[x])
 			printf("%s\n", temp->cmd[x++]);
 		printf("Path = %s\n", temp->path);
-		printf("input = %d\n", temp->fdIN);
-		printf("output = %d\n", temp->fdOUT);
+		printf("input = %s\n", temp->input);
+		printf("output = %s\n", temp->output);
 		printf("append_mod = %d\n", temp->append_mode);
 		printf("Link with next = %s\n\n", temp->link_next);
 		temp = temp->next;
@@ -56,8 +56,12 @@ bool	parsing(t_command_q *command_q, char *entry)
 	entry_sp = split_entry(entry, nb_node);
 	if (!entry_sp)
 		return (false);
-	if (!analyse_entry(command_q, entry_sp, nb_node))
+	if (!analyse_entry(command_q, &entry_sp, nb_node))
+	{
+		ft_free2d(entry_sp);
 		return (false);
+	}
 	print_comannd_q(command_q);
 	ft_free2d(entry_sp);
+	return (true);
 }

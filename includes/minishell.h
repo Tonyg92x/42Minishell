@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 13:44:30 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 16:01:47 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool		parsing(t_command_q *command_q, char *entry);
 char		**split_entry(char *entry, int nb_node);
 char		*get_word(char *string, size_t *i);
 char		*get_char(char c, size_t *i);
-bool		analyse_entry(t_command_q *command_q, char **split_entry, int nb_node);
+bool		analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node);
 void		quotes_manager(char *string);
 bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t *length);
 bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
