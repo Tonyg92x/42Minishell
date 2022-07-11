@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:42:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 15:45:19 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 11:42:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ static bool	parse_input(t_command *command, char ***split_entry, size_t *length,
 		if ((*split_entry)[temp][0] == '<')
 		{
 			if ((*split_entry)[temp][1] && (*split_entry)[temp][1] == '<')
-				return (ft_inputHD(command, &temp, length, split_entry));
-			else
-				return (ft_input(command, &temp, length, split_entry));
+			{
+				if (ft_inputHD(command, &temp, length, split_entry) == false)
+					return (false);
+			}
+			else if (ft_input(command, &temp, length, split_entry) == false)
+				return (false);
 		}
 		else
 			temp++;
