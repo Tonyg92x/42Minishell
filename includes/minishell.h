@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:02:41 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 13:28:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ char		**split_entry(char *entry, int nb_node);
 char		*get_word(char *string, size_t *i);
 char		*get_char(char c, size_t *i);
 bool		analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node);
-void		quotes_manager(char *string);
 bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t *length);
 bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
 bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
+void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
+void		ft_removeSpace(char ***split_entry, size_t *len);
 
 //	Redirection
 bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
@@ -49,6 +50,9 @@ bool		ft_inputHD(t_command *command, size_t *temp, size_t *len, char ***split_en
 bool		parse_output(t_command *command, char ***, size_t *len, size_t *i);
 bool		ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry);
 bool		ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+
+//	Quotes
+bool	ft_parseQuotes(t_command *command, char ***split_entry, size_t *len, size_t *i);
 
 //	Utils
 bool		ft_is_metacharacter(char c);

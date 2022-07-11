@@ -6,11 +6,17 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 09:02:27 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 13:31:27 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_clear(char ***split_entry, size_t *len, size_t *temp)
+{
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+	(*len)--;
+}
 
 //	Analyse the link between 2 command
 void	analyse_link(t_command_q *command_q, char **split_entry, size_t *i)
@@ -51,50 +57,17 @@ bool	is_white_space(char *string)
 	return (false);
 }
 
-static void	fixItBoy(char *string, size_t start, size_t end)
+void	ft_removeSpace(char ***split_entry, size_t *len)
 {
-	while (string[start + 1])
+	size_t	temp;
+
+	temp = 0;
+	while ((*split_entry) && (*split_entry)[temp])
 	{
-		string[start] = string[start + 1];
-		start++;
-		if (start == end - 1 && !string[start + 1])
-		{
-			string[start] = '\0';
-			return ;
-		}
-		else if (start == end - 1)
-			start++;
+		if ((*split_entry)[temp] && (*split_entry[temp]
+			) && (*split_entry)[temp][0] && (*split_entry)[temp][0] == ' ')
+				ft_clear(split_entry, len, &temp);
+		temp++;
 	}
-	string[start - 1] = '\0';
-}
-
-static void	is_closed(char *string, size_t *i)
-{
-	const char		quotes = string[(*i)];
-	const size_t	pos_begin = (*i)++;
-
-	while (string[(*i)])
-	{
-		if (string[(*i)] == quotes)
-		{
-			fixItBoy(string, pos_begin, (*i));
-			return ;
-		}
-		(*i)++;
-	}
-}
-
-//	Trim the quotes if they are closed
-void	quotes_manager(char *string)
-{
-	size_t	i;
-
-	i = 0;
-	while (string[i])
-	{
-		if (string[i] == '\'' || string[i] == '\"')
-			is_closed(string, &i);
-		else
-			i++;
-	}
+	
 }

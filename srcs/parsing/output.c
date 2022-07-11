@@ -6,17 +6,11 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:11:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:13:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 13:32:30 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	clear(char ***split_entry, size_t *len, size_t *temp)
-{
-	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
-	(*len)--;
-}
 
 static bool	open_output(char *file)
 {
@@ -54,10 +48,10 @@ static bool	open_append(char *file)
 
 bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry)
 {
-	clear(split_entry, len, temp);
+	ft_clear(split_entry, len, temp);
 	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
 			&& (*split_entry)[(*temp)][0] == ' ')
-				clear(split_entry, len, temp);
+				ft_clear(split_entry, len, temp);
 	if (!open_output((*split_entry)[(*temp)]))
 		return (false);
 	if (command->output)
@@ -65,16 +59,16 @@ bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entr
 	command->output = ft_strdup((*split_entry)[(*temp)]);
 	if (command->append_mode == true)
 		command->append_mode = false;
-	clear(split_entry, len, temp);
+	ft_clear(split_entry, len, temp);
 	return (true);
 }
 
 bool	ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry)
 {
-	clear(split_entry, len, temp);
+	ft_clear(split_entry, len, temp);
 	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
 			&& (*split_entry)[(*temp)][0] == ' ')
-				clear(split_entry, len, temp);
+				ft_clear(split_entry, len, temp);
 	if (!open_append((*split_entry)[(*temp)]))
 		return (false);
 	if (command->output)
@@ -82,6 +76,6 @@ bool	ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entr
 	command->output = ft_strdup((*split_entry)[(*temp)]);
 	if (command->append_mode == false)
 		command->append_mode = true;
-	clear(split_entry, len, temp);
+	ft_clear(split_entry, len, temp);
 	return (true);
 }
