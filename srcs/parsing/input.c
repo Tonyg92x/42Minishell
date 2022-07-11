@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/08 15:50:08 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 12:06:33 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ static bool	open_input(char *file)
 	else
 		close(fd);
 	return (true);
+}
+
+//	Get the entry routine
+static char	**get_hd(char *delim)
+{
+	char	**retour;
+	char	*line;
+
+	retour = ft_calloc(1, sizeof(char *));
+	retour[0] = NULL;
+	line = ft_calloc(1, sizeof(char *));
+	line[0] = '\0';
+	while (true)
+	{
+		free(line);
+		line = readline("> ");
+		if (ft_strnstr(line, delim, ft_strlen(delim)) != NULL)
+			break ;
+		retour = ft_realloc(retour, line);
+	}
+	free(line);
+	return (retour);
 }
 
 bool	ft_input(t_command *command, size_t *temp, size_t *len,
@@ -53,9 +75,25 @@ bool	ft_input(t_command *command, size_t *temp, size_t *len,
 bool	ft_inputHD(t_command *command, size_t *temp, size_t *len,
 	char ***split_entry)
 {
-	(void) command;
-	(void) temp;
-	(void) len;
-	(void) split_entry;
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+	(*len)--;
+	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
+		&& (*split_entry)[(*temp)][0] == ' ')
+	{
+		(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+		(*len)--;
+	}
+	if (!(*split_entry)[(*temp)])
+	{
+		ft_putstr_fd("Sytax error near unexpected token\n", 2);
+		return (false);
+	}
+	if (command->here_doc)
+		ft_free2d(command->here_doc);
+	command->here_doc = get_hd((*split_entry)[(*temp)]);
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+	(*len)--;
+	if (!(*split_entry)[(*temp)])
+		command->valid = false;
 	return (true);
 }
