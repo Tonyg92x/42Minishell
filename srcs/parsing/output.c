@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:11:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:32:30 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 19:46:09 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entr
 	if (command->append_mode == true)
 		command->append_mode = false;
 	ft_clear(split_entry, len, temp);
+	if (!(*split_entry)[(*temp)])
+		command->valid = false;
 	return (true);
 }
 

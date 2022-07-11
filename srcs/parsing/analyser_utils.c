@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:31:27 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/11 19:43:10 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,12 @@ void	ft_removeSpace(char ***split_entry, size_t *len)
 		if ((*split_entry)[temp] && (*split_entry[temp]
 			) && (*split_entry)[temp][0] && (*split_entry)[temp][0] == ' ')
 				ft_clear(split_entry, len, &temp);
-		temp++;
+		else
+			temp++;
+		int	i = 0;
+		while ((*split_entry)[i])
+			printf("%s\n", (*split_entry)[i++]);
+		printf("\n");
 	}
 	
 }
