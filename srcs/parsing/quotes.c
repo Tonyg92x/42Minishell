@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:19:03 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 10:31:27 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:48:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 // }
 
 //	Trim the quotes if they are closed
-bool	ft_parseQuotes(t_command *command, char ***split_entry)
+bool	ft_parse_quotes(t_command *command, char ***split_entry)
 {
 	(void)command;
 	(void)split_entry;

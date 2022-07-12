@@ -6,13 +6,14 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:56:42 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:53:32 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	parsing_error(char **split_entry, size_t *i, size_t *length, t_command_q *command_q)
+static bool	parsing_error(char **split_entry, size_t *i, size_t *length,
+	t_command_q *command_q)
 {
 	t_command	*command;
 	int			x;
@@ -20,6 +21,7 @@ static bool	parsing_error(char **split_entry, size_t *i, size_t *length, t_comma
 	x = 0;
 	command = last_command(command_q);
 	init_cmd(command, split_entry, i, length);
+	command->valid = false;
 	return (false);
 }
 
@@ -82,8 +84,8 @@ bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 		if (!ft_redir(command, split_entry, &length, &i))
 			return (false);
 		parse_command(command_q, (*split_entry), &i, &length);
-		ft_expandEnv(split_entry, command);
-		if (!ft_parseQuotes(command, split_entry))
+		ft_expand_env(split_entry, command);
+		if (!ft_parse_quotes(command, split_entry))
 			return (false);
 		if (command_q->nb_command > 0 && (*split_entry)[i])
 			analyse_link(command_q, (*split_entry), &i);

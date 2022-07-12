@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:18:41 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:50:20 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_clear(char ***split_entry, size_t *len, size_t *temp)
 {
-	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+	(*split_entry) = ft_rev_realloc((*split_entry), (*split_entry)[(*temp)]);
 	(*len)--;
 }
 
@@ -57,15 +57,19 @@ bool	is_white_space(char *string)
 	return (false);
 }
 
-void	ft_removeSpace(char ***split_entry)
+void	ft_remove_space(char ***split_entry)
 {
 	size_t	temp;
 
 	temp = 0;
 	while ((*split_entry) && (*split_entry)[temp])
 	{
-		if ((*split_entry) && (*split_entry)[temp] && (*split_entry)[temp][0] && (*split_entry)[temp][0] == ' ')
-				(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[temp]);
+		if ((*split_entry) && (*split_entry)[temp]
+			&& (*split_entry)[temp][0] && (*split_entry)[temp][0] == ' ')
+		{
+			(*split_entry) = ft_rev_realloc((*split_entry),
+					(*split_entry)[temp]);
+		}
 		else
 			temp++;
 	}

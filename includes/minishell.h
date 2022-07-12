@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:18:53 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:53:21 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,21 @@ bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t 
 bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
 bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
-void		ft_removeSpace(char ***split_entry);
-void		ft_expandEnv(char ***split_entry, t_command *command);
-bool		ft_isMetaEnv(char c);
+void		ft_remove_space(char ***split_entry);
+void		ft_expand_env(char ***split_entry, t_command *command);
+bool		ft_ismetaenv(char c);
 void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
 
 //	Redirection
 bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
 bool		ft_input(t_command *command, size_t *temp, size_t *len, char ***split_entry);
-bool		ft_inputHD(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		ft_input_hd(t_command *command, size_t *temp, size_t *len,char ***split_entry);
 bool		parse_output(t_command *command, char ***, size_t *len, size_t *i);
 bool		ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry);
 bool		ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry);
 
 //	Quotes
-bool		ft_parseQuotes(t_command *command, char ***split_entry);
+bool		ft_parse_quotes(t_command *command, char ***split_entry);
 
 //	Utils
 bool		ft_is_metacharacter(char c);
@@ -91,7 +91,7 @@ void		change_pwd(char *pwd, char **envp);
 
 //	Fonction pour libft ?
 char		**ft_realloc(char **strings, char *str);
-char		**ft_revRealloc(char **array, void *ptr);
+char		**ft_rev_realloc(char **array, void *ptr);
 
 
 #endif

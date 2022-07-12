@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 09:04:11 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/08 09:21:45 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:39:38 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static bool	exist(char **array, void *ptr)
 }
 
 //	Create a new string array without the string entered as ptr
-char	**ft_revRealloc(char **array, void *ptr)
+char	**ft_rev_realloc(char **array, void *ptr)
 {
 	const size_t	new_size = get_size(array);
 	char			**retour;

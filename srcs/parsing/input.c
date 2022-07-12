@@ -6,12 +6,11 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/12 16:03:22 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:45:35 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static bool	open_input(char *file)
 {
@@ -52,7 +51,7 @@ static char	**get_hd(char *delim)
 	return (retour);
 }
 
-bool	ft_inputHD(t_command *command, size_t *temp, size_t *len,
+bool	ft_input_hd(t_command *command, size_t *temp, size_t *len,
 	char ***split_entry)
 {
 	ft_clear(split_entry, len, temp);
@@ -64,6 +63,11 @@ bool	ft_inputHD(t_command *command, size_t *temp, size_t *len,
 	if (command->here_doc)
 		ft_free2d(command->here_doc);
 	command->here_doc = get_hd((*split_entry)[(*temp)]);
+	if (command->input)
+	{
+		free(command->input);
+		command->input = NULL;
+	}
 	ft_clear(split_entry, len, temp);
 	if (!(*split_entry)[(*temp)])
 		command->valid = false;
@@ -74,14 +78,16 @@ bool	ft_input(t_command *command, size_t *temp, size_t *len,
 	char ***split_entry)
 {
 	ft_clear(split_entry, len, temp);
-	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
-			&& (*split_entry)[(*temp)][0] == ' ')
-				ft_clear(split_entry, len, temp);
 	if (!open_input((*split_entry)[(*temp)]))
 		return (false);
 	if (command->input)
 		free(command->input);
 	command->input = ft_strdup((*split_entry)[(*temp)]);
+	if (command->here_doc)
+	{
+		ft_free2d(command->here_doc);
+		command->here_doc = NULL;
+	}
 	ft_clear(split_entry, len, temp);
 	return (true);
 }
