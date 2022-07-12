@@ -6,11 +6,17 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 10:38:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 15:18:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_clear(char ***split_entry, size_t *len, size_t *temp)
+{
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[(*temp)]);
+	(*len)--;
+}
 
 //	Analyse the link between 2 command
 void	analyse_link(t_command_q *command_q, char **split_entry, size_t *i)

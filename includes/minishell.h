@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 13:17:41 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 15:18:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 void		ft_removeSpace(char ***split_entry);
 void		ft_expandEnv(char ***split_entry, t_command *command);
 bool		ft_isMetaEnv(char c);
+void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
 
 //	Redirection
-bool		ft_redir(t_command *command, char ***split_entry);
-bool		ft_input(t_command *command, size_t temp, char ***split_entry);
-bool		ft_inputHD(t_command *command, size_t temp, char ***split_entry);
-bool		parse_output(t_command *command, char ***split_entry);
-bool		ft_append(t_command *command, size_t temp, char ***split_entry);
-bool		ft_output(t_command *command, size_t temp, char ***split_entry);
+bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
+bool		ft_input(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		ft_inputHD(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		parse_output(t_command *command, char ***, size_t *len, size_t *i);
+bool		ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry);
 
 //	Quotes
 bool		ft_parseQuotes(t_command *command, char ***split_entry);
