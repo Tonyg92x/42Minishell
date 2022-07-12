@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/12 15:15:37 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 16:03:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**get_hd(char *delim)
 
 	retour = ft_calloc(1, sizeof(char *));
 	retour[0] = NULL;
-	line = ft_calloc(1, sizeof(char *));
+	line = ft_calloc(1, sizeof(char));
 	line[0] = '\0';
 	while (true)
 	{
@@ -56,9 +56,6 @@ bool	ft_inputHD(t_command *command, size_t *temp, size_t *len,
 	char ***split_entry)
 {
 	ft_clear(split_entry, len, temp);
-	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
-		&& (*split_entry)[(*temp)][0] == ' ')
-			ft_clear(split_entry, len, temp);
 	if (!(*split_entry)[(*temp)])
 	{
 		ft_putstr_fd("Sytax error near unexpected token\n", 2);

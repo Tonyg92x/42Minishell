@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:42:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:15:10 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 15:40:52 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static bool	validInput(char **split_entry, size_t temp, size_t limit)
 	if (!split_entry[temp] || !split_entry[temp][0] || temp >= limit)
 		return (false);
 	temp++;
-	while (split_entry[temp] && split_entry[temp][0]
-			&& split_entry[temp][0] == ' ')
-		temp++;
 	if (temp >= limit || !split_entry[temp] || !split_entry[temp][0])
 		return (false);
 	return (true);
