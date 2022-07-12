@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 13:14:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:47:56 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ int	how_much_node(char *string)
 			count++;
 			i++;
 		}
-		if (string[i + 1] && ((string[i] == '<' && string[i + 1] == 
-			'<') || (string[i] == '>' && string[i + 1] == '>')))
+		if (string[i + 1] && ((string[i] == '<' && string[i + 1] == '<')
+				|| (string[i] == '>' && string[i + 1] == '>')))
 		{
 			count++;
-			i +=2;
+			i += 2;
 		}
 		else if (ft_is_metacharacter(string[i]))
 		{

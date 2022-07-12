@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 09:09:55 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:32:00 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:18:19 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	init_cmd(t_command *command, char **split_entry
 			(*i)++;
 	}
 	command->cmd[cmd_entered] = NULL;
+	command->valid = true;
 	return (true);
 }
 

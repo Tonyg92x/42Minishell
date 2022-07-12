@@ -6,13 +6,13 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:42:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:40:52 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:52:58 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	validInput(char **split_entry, size_t temp, size_t limit)
+static bool	valid_input(char **split_entry, size_t temp, size_t limit)
 {
 	if (!split_entry[temp] || !split_entry[temp][0] || temp >= limit)
 		return (false);
@@ -30,13 +30,13 @@ static bool	parse_input(t_command *command, char ***split_entry, size_t *length,
 
 	temp = (*i);
 	limit = temp + (*length);
-	while (validInput((*split_entry), temp, limit))
+	while (valid_input((*split_entry), temp, limit))
 	{
 		if ((*split_entry)[temp][0] == '<')
 		{
 			if ((*split_entry)[temp][1] && (*split_entry)[temp][1] == '<')
 			{
-				if (ft_inputHD(command, &temp, length, split_entry) == false)
+				if (ft_input_hd(command, &temp, length, split_entry) == false)
 					return (false);
 			}
 			else if (ft_input(command, &temp, length, split_entry) == false)
@@ -48,14 +48,15 @@ static bool	parse_input(t_command *command, char ***split_entry, size_t *length,
 	return (true);
 }
 
-bool	parse_output(t_command *command, char ***split_entry, size_t *len, size_t *i)
+bool	parse_output(t_command *command, char ***split_entry, size_t *len,
+	size_t *i)
 {
 	size_t	limit;
 	size_t	temp;
 
 	temp = (*i);
 	limit = temp + (*len);
-	while (validInput((*split_entry), temp, limit))
+	while (valid_input((*split_entry), temp, limit))
 	{
 		if ((*split_entry)[temp][0] == '>')
 		{

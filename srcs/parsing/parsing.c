@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:19:25 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:51:25 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	parsing(t_command_q *command_q, char *entry)
 
 	nb_node = how_much_node(entry);
 	entry_sp = split_entry(entry, nb_node);
-	ft_removeSpace(&entry_sp);
+	ft_remove_space(&entry_sp);
 	if (!entry_sp)
 		return (false);
 	if (!analyse_entry(command_q, &entry_sp, nb_node))

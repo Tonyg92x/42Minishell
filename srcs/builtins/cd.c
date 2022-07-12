@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 13:29:50 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:38:06 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	go_home(t_command *command)
 
 static bool	change_dir(t_command *command)
 {
-	if (chdir(command->cmd[1])!= 0)
+	if (chdir(command->cmd[1]) != 0)
 	{
 		ft_putstr_fd("cd : ", 2);
 		ft_putstr_fd(command->cmd[1], 2);

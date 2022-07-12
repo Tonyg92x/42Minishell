@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/12 13:15:51 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/12 17:45:54 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,7 +167,7 @@ opti: CFLAGS += -O3
 opti: obj $(NAME)
 
 leak: obj $(NAME)
-	@valgrind ./minishell
+	@valgrind --leak-check=full --trace-children=yes ./minishell
 
 setup:
 	@rm -rf LISCENSE images README.md

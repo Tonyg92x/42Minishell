@@ -6,12 +6,11 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:11:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 15:15:51 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 18:46:48 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static bool	open_output(char *file)
 {
@@ -47,12 +46,13 @@ static bool	open_append(char *file)
 	return (true);
 }
 
-bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+bool	ft_output(t_command *command, size_t *temp, size_t *len,
+	char ***split_entry)
 {
 	ft_clear(split_entry, len, temp);
 	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
 			&& (*split_entry)[(*temp)][0] == ' ')
-				ft_clear(split_entry, len, temp);
+		ft_clear(split_entry, len, temp);
 	if (!open_output((*split_entry)[(*temp)]))
 		return (false);
 	if (command->output)
@@ -66,12 +66,13 @@ bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entr
 	return (true);
 }
 
-bool	ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+bool	ft_append(t_command *command, size_t *temp, size_t *len,
+	char ***split_entry)
 {
 	ft_clear(split_entry, len, temp);
 	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
 			&& (*split_entry)[(*temp)][0] == ' ')
-				ft_clear(split_entry, len, temp);
+		ft_clear(split_entry, len, temp);
 	if (!open_append((*split_entry)[(*temp)]))
 		return (false);
 	if (command->output)
