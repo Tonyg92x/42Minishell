@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 10:32:49 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 10:45:20 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 			ft_removeSpace(split_entry);
 			if (!ft_redir(command, split_entry))
 				return (false);
-			// ft_expendEnv(split_entry, command);
+			ft_expandEnv(split_entry, command);
 			if (!ft_parseQuotes(command, split_entry))
 				return (false);
 		}

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 10:30:31 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 13:17:41 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length
 bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 void		ft_removeSpace(char ***split_entry);
-void		ft_expendEnv(char ***split_entry, t_command *command);
+void		ft_expandEnv(char ***split_entry, t_command *command);
+bool		ft_isMetaEnv(char c);
 
 //	Redirection
 bool		ft_redir(t_command *command, char ***split_entry);
@@ -52,7 +53,7 @@ bool		ft_append(t_command *command, size_t temp, char ***split_entry);
 bool		ft_output(t_command *command, size_t temp, char ***split_entry);
 
 //	Quotes
-bool	ft_parseQuotes(t_command *command, char ***split_entry);
+bool		ft_parseQuotes(t_command *command, char ***split_entry);
 
 //	Utils
 bool		ft_is_metacharacter(char c);
