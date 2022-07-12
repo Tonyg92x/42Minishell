@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 08:04:14 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/23 16:11:22 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 13:53:42 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ static size_t	get_envp_size(char **envp)
 char	*find_variable(char *str, char **envp)
 {
 	size_t	i;
+	size_t	start_pos;
 
 	if (!str || !envp)
 		return (NULL);
 	i = 0;
+	start_pos = 0;
 	while (envp[i])
 	{
 		if (ft_strnstr(envp[i], str, ft_strlen(str)) != NULL)
-			return (envp[i]);
+		{
+			while (envp[i][start_pos] && envp[i][start_pos] != '=')
+				start_pos++;
+			return (ft_strdup(&envp[i][++start_pos]));
+		}
 		i++;
 	}
 	return (NULL);

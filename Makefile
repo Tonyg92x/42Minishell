@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/06 12:56:16 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/12 13:15:51 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,13 +54,16 @@ PARSING_FILES		=					\
 			analyser_utils.c			\
 			command_parsing.c			\
 			entry_analyser.c			\
-			input_utils.c				\
+			expandEnv.c					\
+			expandEnvUtils.c			\
 			input.c						\
 			output.c					\
 			parsing_utils.c				\
 			parsing.c					\
 			path.c						\
+			redirection.c				\
 			split_entry.c				\
+			quotes.c					\
 
 BUILTINS_FILES		=					\
 			builtins.c					\
@@ -79,6 +82,7 @@ MAIN_FILES			=					\
 			command_utils.c				\
 			envp.c						\
 			ft_realloc.c				\
+			ft_revRealloc.c				\
 			main.c						\
 
 ENGINE_FILES		=					\
@@ -156,7 +160,8 @@ obj:
 
 ## ----- make options ----- #
 debug: CFLAGS += -g
-debug: obj $(NAME)
+debug:	fclean obj $(NAME)
+
 
 opti: CFLAGS += -O3
 opti: obj $(NAME)
@@ -175,6 +180,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(LIBFT_DIR)libft.a
+	@rm -rf $(NAME).dSYM*
 
 re: fclean all
 

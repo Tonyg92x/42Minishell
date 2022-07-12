@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:38 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/08 15:47:11 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ void	free_command(t_command	*command)
 		return ;
 	if (command->here_doc != NULL)
 		ft_free2d(command->here_doc);
-	if (command->output != NULL)
-		free(command->output);
-	if (command->input != NULL)
-		free(command->input);
 	if (command->path != NULL)
 		free(command->path);
 	if (command->cmd != NULL)
 		ft_free2d(command->cmd);
 	if (command->link_next != NULL)
 		free(command->link_next);
+	if (command->input != NULL)
+		free(command->input);
+	if (command->output != NULL)
+		free(command->output);
 	free (command);
 }
 

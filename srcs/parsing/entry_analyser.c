@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 13:55:56 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 15:56:42 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	parsing_error(char **split_entry, size_t *i, size_t *length, t_comma
 
 	x = 0;
 	command = last_command(command_q);
-	init_cmd(last_command(command_q), split_entry, i, length);
+	init_cmd(command, split_entry, i, length);
 	return (false);
 }
 
@@ -47,16 +47,9 @@ static bool	parse_command(t_command_q *command_q, char **split_entry,
 	i_limit = (*i) + (*length);
 	while (split_entry[(*i)] && (*i) < i_limit)
 	{
-		if (is_white_space(split_entry[(*i)]))
-		{
-			while (is_white_space(split_entry[(*i)]))
-				(*i)++;
-		}
-		else if (builtins_exept(command_q, split_entry, i, length))
+		if (builtins_exept(command_q, split_entry, i, length))
 			return (true);
 		else if (command_exept(command_q, split_entry, i, length))
-			return (true);
-		else if (input_fd(command_q, split_entry, i))
 			return (true);
 		else
 			return (parsing_error(split_entry, i, length, command_q));
@@ -69,29 +62,31 @@ size_t	how_much_node_in_command(char **split_entry)
 	size_t	index;
 
 	index = 0;
-	while (split_entry[index] && split_entry[index][0] !=
-			'|' && split_entry[index][0] != '&' && split_entry
-			[index][0] != ';')
+	while (split_entry[index] && split_entry[index][0] != '|' )
 		index++;
 	return (index);
 }
 
-void	analyse_entry(t_command_q *command_q, char **split_entry, int nb_node)
+bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 {
-	size_t	i;
-	size_t	length;
+	size_t		i;
+	size_t		length;
+	t_command	*command;
 
 	i = 0;
-	while (split_entry[i] && (int)i < nb_node)
+	while ((*split_entry)[i] && (int)i < nb_node)
 	{
-		length = how_much_node_in_command(&split_entry[i]);
-		new_command(command_q);
-		parse_command(command_q, split_entry, &i, &length);
+		command = new_command(command_q);
 		command_q->nb_command++;
-		if (command_q->nb_command > 0 && split_entry[i])
-			analyse_link(command_q, split_entry, &i);
-		if (last_command(command_q)->valid == false)
-			i++;
+		length = how_much_node_in_command(&(*split_entry)[i]);
+		if (!ft_redir(command, split_entry, &length, &i))
+			return (false);
+		parse_command(command_q, (*split_entry), &i, &length);
+		ft_expandEnv(split_entry, command);
+		if (!ft_parseQuotes(command, split_entry))
+			return (false);
+		if (command_q->nb_command > 0 && (*split_entry)[i])
+			analyse_link(command_q, (*split_entry), &i);
 	}
-	parse_output(command_q);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/06 14:12:34 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 15:18:53 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,38 @@ void		builtins_engine(t_command	*command);
 void		command_engine(t_command *command);
 
 //	Parsing functions
-void		parsing(t_command_q *command_q, char *entry);
+bool		parsing(t_command_q *command_q, char *entry);
+char		**split_entry(char *entry, int nb_node);
+char		*get_word(char *string, size_t *i);
+char		*get_char(char c, size_t *i);
+bool		analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node);
+bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t *length);
+bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
+bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
+void		parse_builtins(t_command *command, char **split_entry, size_t *i);
+void		ft_removeSpace(char ***split_entry);
+void		ft_expandEnv(char ***split_entry, t_command *command);
+bool		ft_isMetaEnv(char c);
+void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
+
+//	Redirection
+bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
+bool		ft_input(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		ft_inputHD(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		parse_output(t_command *command, char ***, size_t *len, size_t *i);
+bool		ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+bool		ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry);
+
+//	Quotes
+bool		ft_parseQuotes(t_command *command, char ***split_entry);
+
+//	Utils
 bool		ft_is_metacharacter(char c);
 size_t		word_size(char *string);
-char		**error_exit(char **s_entry);
-char		*get_word(char *string, size_t *i);
-char		*get_char(char c);
-char		**split_entry(char *entry, int nb_node);
 int			how_much_node(char *string);
-void		analyse_entry(t_command_q *command_q, char **split_entry, int nb_node);
 bool		is_white_space(char *string);
-void		quotes_manager(char *string);
-bool		input_fd(t_command_q *command_q, char **split_entry, size_t *i);
-bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length);
-void		parse_builtins(t_command *command, char **split_entry, size_t *i);
-bool		has_input(char **split_entry, size_t *i);
-char		*has_heredoc(char **split_entry, size_t *i);
-bool		run_heredoc(t_command_q *command_q, char **split_entry, size_t *i, char *delim);
-bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
+char		**error_exit(char **s_entry);
 size_t		how_much_node_in_command(char **split_entry);
-char		**get_hd(char **split_entry, size_t *i, char *delim);
-void		advance_input(char **split_entry, size_t *i);
-void		parse_output(t_command_q *command_q);
 
 //	Builtins
 bool		is_builtins(char *string);
@@ -69,19 +79,19 @@ t_command	*last_command(t_command_q *command_q);
 void		initialise_commands(t_command_q *command_q);
 t_command	*new_command(t_command_q *command_q);
 void		free_command(t_command	*command);
-bool		command_exept(t_command_q *command, char **split_entry, size_t *i, size_t *length);
 size_t		index_to_path(char **envp);
 bool		path_is_valid(char *command, char **path, t_command_q *command_q);
 void		analyse_link(t_command_q *command_q, char ** split_entry, size_t *i);
 
 //	Environnement fonctions
-char	**envp_init(char **envp);
-char	*find_variable(char *str, char **envp);
-int		find_variable_index(char *str, char **envp);
-void	change_pwd(char *pwd, char **envp);
+char		**envp_init(char **envp);
+char		*find_variable(char *str, char **envp);
+int			find_variable_index(char *str, char **envp);
+void		change_pwd(char *pwd, char **envp);
 
 //	Fonction pour libft ?
-char	**ft_realloc(char **strings, char *str);
+char		**ft_realloc(char **strings, char *str);
+char		**ft_revRealloc(char **array, void *ptr);
 
 
 #endif

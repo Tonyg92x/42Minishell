@@ -6,96 +6,82 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:23 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 16:03:22 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	advance_input(char **split_entry, size_t *i)
+
+static bool	open_input(char *file)
 {
-	(*i)++;
-	while (split_entry[(*i)] && (is_white_space(split_entry[(*i)])
-			|| split_entry[(*i)][0] == '<'))
-		(*i)++;
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": No such file or directory.\n", 2);
+		return (false);
+	}
+	else
+		close(fd);
+	return (true);
 }
 
-static bool	input_command(t_command_q *command_q, char **split_entry, size_t *i)
+//	Get the entry routine
+static char	**get_hd(char *delim)
 {
-	t_command	*command;
-	char		*inpu;
-	size_t		length;
+	char	**retour;
+	char	*line;
 
-	inpu = ft_strdup(split_entry[(*i)]);
-	if (!inpu)
-		return (false);
-	advance_input(split_entry, i);
-	if (!split_entry[(*i)])
-		return (false);
-	length = how_much_node_in_command(&split_entry[(*i)]);
-	if (builtins_exept(command_q, split_entry, i, &length))
+	retour = ft_calloc(1, sizeof(char *));
+	retour[0] = NULL;
+	line = ft_calloc(1, sizeof(char));
+	line[0] = '\0';
+	while (true)
 	{
-		command = last_command(command_q);
-		command->input = inpu;
-		return (true);
+		free(line);
+		line = readline("> ");
+		if (ft_strnstr(line, delim, ft_strlen(delim)) != NULL)
+			break ;
+		retour = ft_realloc(retour, line);
 	}
-	else if (command_exept(command_q, split_entry, i, &length))
-	{
-		command = last_command(command_q);
-		command->input = inpu;
-		return (true);
-	}
-	free(inpu);
-	return (false);
+	free(line);
+	return (retour);
 }
 
-//	look if there is input in the command
-//	DONT FORGET THE DOCK CODE HERE
-bool	input_fd(t_command_q *command_q, char **split_entry, size_t *i)
+bool	ft_inputHD(t_command *command, size_t *temp, size_t *len,
+	char ***split_entry)
 {
-	char	*delim;
-
-	if (!command_q || !split_entry || !split_entry[(*i)])
+	ft_clear(split_entry, len, temp);
+	if (!(*split_entry)[(*temp)])
+	{
+		ft_putstr_fd("Sytax error near unexpected token\n", 2);
 		return (false);
-	delim = has_heredoc(split_entry, i);
-	if (delim)
-		return (run_heredoc(command_q, split_entry, i, delim));
-	if (has_input(split_entry, i))
-		return (input_command(command_q, split_entry, i));
-	return (false);
+	}
+	if (command->here_doc)
+		ft_free2d(command->here_doc);
+	command->here_doc = get_hd((*split_entry)[(*temp)]);
+	ft_clear(split_entry, len, temp);
+	if (!(*split_entry)[(*temp)])
+		command->valid = false;
+	return (true);
 }
 
-static bool	get_command(t_command_q *command_q, char **split_entry,
-	size_t *i, char **hd)
+bool	ft_input(t_command *command, size_t *temp, size_t *len,
+	char ***split_entry)
 {
-	size_t		length;
-
-	length = how_much_node_in_command(&split_entry[(*i)]);
-	if (length == 0)
-		ft_free2d(hd);
-	else if (builtins_exept(command_q, split_entry, i, &length))
-	{
-		last_command(command_q)->here_doc = hd;
-		return (true);
-	}
-	else if (command_exept(command_q, split_entry, i, &length))
-	{
-		last_command(command_q)->here_doc = hd;
-		return (true);
-	}
-	last_command(command_q)->valid = false;
-	return (false);
-}
-
-//	Execute here doc here
-bool	run_heredoc(t_command_q *command_q, char **split_entry,
-	size_t *i, char *delim)
-{
-	char		**hd;
-
-	hd = get_hd(split_entry, i, delim);
-	free(delim);
-	if (!hd)
+	ft_clear(split_entry, len, temp);
+	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
+			&& (*split_entry)[(*temp)][0] == ' ')
+				ft_clear(split_entry, len, temp);
+	if (!open_input((*split_entry)[(*temp)]))
 		return (false);
-	return (get_command(command_q, split_entry, i, hd));
+	if (command->input)
+		free(command->input);
+	command->input = ft_strdup((*split_entry)[(*temp)]);
+	ft_clear(split_entry, len, temp);
+	return (true);
 }

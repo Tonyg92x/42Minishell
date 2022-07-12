@@ -5,51 +5,80 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 19:02:21 by aguay             #+#    #+#             */
-/*   Updated: 2022/06/30 16:10:19 by aguay            ###   ########.fr       */
+/*   Created: 2022/07/11 12:11:58 by aguay             #+#    #+#             */
+/*   Updated: 2022/07/12 15:15:51 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parse_cmd_output(t_command *command)
-{
-	size_t	i;
 
-	i = 0;
-	while (command->cmd && command->cmd[i])
+static bool	open_output(char *file)
+{
+	int	fd;
+
+	fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (fd == -1)
 	{
-		if (command->cmd[i][0] == '>')
-		{
-			command->cmd[i++][0] = '\0';
-			if (command->cmd[i] && command->cmd[i][0] == '>')
-			{
-				command->append_mode = true;
-				command->cmd[i++][0] = '\0';
-			}
-			if (!command->cmd || !command->cmd[i])
-			{
-				command->append_mode = false;
-				return ;
-			}
-			command->output = ft_strdup(command->cmd[i]);
-			command->cmd[i][0] = '\0';
-		}
-		i++;
+		ft_putstr_fd("Opening ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		return (false);
 	}
+	else
+		close(fd);
+	return (true);
 }
 
-void	parse_output(t_command_q *command_q)
+static bool	open_append(char *file)
 {
-	t_command	*command;
-	size_t		i;
+	int	fd;
 
-	i = 0;
-	command = command_q->start;
-	while (i < command_q->nb_command)
+	fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	if (fd == -1)
 	{
-		parse_cmd_output(command);
-		command = command->next;
-		i++;
+		ft_putstr_fd("Opening ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		return (false);
 	}
+	else
+		close(fd);
+	return (true);
+}
+
+bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+{
+	ft_clear(split_entry, len, temp);
+	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
+			&& (*split_entry)[(*temp)][0] == ' ')
+				ft_clear(split_entry, len, temp);
+	if (!open_output((*split_entry)[(*temp)]))
+		return (false);
+	if (command->output)
+		free(command->output);
+	command->output = ft_strdup((*split_entry)[(*temp)]);
+	if (command->append_mode == true)
+		command->append_mode = false;
+	ft_clear(split_entry, len, temp);
+	if (!(*split_entry)[(*temp)])
+		command->valid = false;
+	return (true);
+}
+
+bool	ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+{
+	ft_clear(split_entry, len, temp);
+	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
+			&& (*split_entry)[(*temp)][0] == ' ')
+				ft_clear(split_entry, len, temp);
+	if (!open_append((*split_entry)[(*temp)]))
+		return (false);
+	if (command->output)
+		free(command->output);
+	command->output = ft_strdup((*split_entry)[(*temp)]);
+	if (command->append_mode == false)
+		command->append_mode = true;
+	ft_clear(split_entry, len, temp);
+	return (true);
 }
