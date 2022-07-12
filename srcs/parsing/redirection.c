@@ -6,43 +6,40 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:42:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:02:59 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 10:31:10 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	validInput(char **split_entry, size_t temp, size_t limit)
+static bool	validInput(char **split_entry, size_t temp)
 {
-	if (!split_entry[temp] || !split_entry[temp][0] || temp >= limit)
+	if (!split_entry[temp] || !split_entry[temp][0])
 		return (false);
 	temp++;
 	while (split_entry[temp] && split_entry[temp][0]
 			&& split_entry[temp][0] == ' ')
 		temp++;
-	if (temp >= limit || !split_entry[temp] || !split_entry[temp][0])
+	if (!split_entry[temp] || !split_entry[temp][0])
 		return (false);
 	return (true);
 }
 
-static bool	parse_input(t_command *command, char ***split_entry, size_t *length,
-	size_t *i)
+static bool	parse_input(t_command *command, char ***split_entry)
 {
-	size_t	limit;
 	size_t	temp;
 
-	temp = (*i);
-	limit = temp + (*length);
-	while (validInput((*split_entry), temp, limit))
+	temp = 0;
+	while (validInput((*split_entry), temp))
 	{
 		if ((*split_entry)[temp][0] == '<')
 		{
 			if ((*split_entry)[temp][1] && (*split_entry)[temp][1] == '<')
 			{
-				if (ft_inputHD(command, &temp, length, split_entry) == false)
+				if (ft_inputHD(command, temp, split_entry) == false)
 					return (false);
 			}
-			else if (ft_input(command, &temp, length, split_entry) == false)
+			else if (ft_input(command, temp, split_entry) == false)
 				return (false);
 		}
 		else
@@ -51,23 +48,21 @@ static bool	parse_input(t_command *command, char ***split_entry, size_t *length,
 	return (true);
 }
 
-bool	parse_output(t_command *command, char ***split_entry, size_t *len, size_t *i)
+bool	parse_output(t_command *command, char ***split_entry)
 {
-	size_t	limit;
 	size_t	temp;
 
-	temp = (*i);
-	limit = temp + (*len);
-	while (validInput((*split_entry), temp, limit))
+	temp = 0;
+	while (validInput((*split_entry), temp))
 	{
 		if ((*split_entry)[temp][0] == '>')
 		{
 			if ((*split_entry)[temp][1] && (*split_entry)[temp][1] == '>')
 			{
-				if (ft_append(command, &temp, len, split_entry) == false)
+				if (ft_append(command, temp, split_entry) == false)
 					return (false);
 			}
-			else if (ft_output(command, &temp, len, split_entry) == false)
+			else if (ft_output(command, temp, split_entry) == false)
 				return (false);
 		}
 		else
@@ -76,12 +71,11 @@ bool	parse_output(t_command *command, char ***split_entry, size_t *len, size_t *
 	return (true);
 }
 
-bool	ft_redir(t_command *command, char ***split_entry, size_t *length,
-	size_t *i)
+bool	ft_redir(t_command *command, char ***split_entry)
 {
-	if (!parse_input(command, split_entry, length, i))
+	if (!parse_input(command, split_entry))
 		return (false);
-	if (!parse_output(command, split_entry, length, i))
+	if (!parse_output(command, split_entry))
 		return (false);
 	return (true);
 }

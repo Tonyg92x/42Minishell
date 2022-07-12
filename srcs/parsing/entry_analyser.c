@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 13:32:11 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 10:32:49 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,17 @@ bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 	i = 0;
 	while ((*split_entry)[i] && (int)i < nb_node)
 	{
-		length = how_much_node_in_command(&(*split_entry)[i]);
 		command = new_command(command_q);
-		ft_removeSpace(split_entry, &length);
-		if (!ft_parseQuotes(command, split_entry, &length, &i))
-			return (false);
-		if (!ft_redir(command, split_entry, &length, &i))
-			return (false);
+		if (i == 0)
+		{
+			ft_removeSpace(split_entry);
+			if (!ft_redir(command, split_entry))
+				return (false);
+			// ft_expendEnv(split_entry, command);
+			if (!ft_parseQuotes(command, split_entry))
+				return (false);
+		}
+		length = how_much_node_in_command(&(*split_entry)[i]);
 		parse_command(command_q, (*split_entry), &i, &length);
 		command_q->nb_command++;
 		if (command_q->nb_command > 0 && (*split_entry)[i])

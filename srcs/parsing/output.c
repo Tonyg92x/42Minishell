@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:11:58 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/11 19:46:09 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/12 10:29:36 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,32 @@ static bool	open_append(char *file)
 	return (true);
 }
 
-bool	ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+bool	ft_output(t_command *command, size_t temp, char ***split_entry)
 {
-	ft_clear(split_entry, len, temp);
-	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
-			&& (*split_entry)[(*temp)][0] == ' ')
-				ft_clear(split_entry, len, temp);
-	if (!open_output((*split_entry)[(*temp)]))
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[temp]);
+	if (!open_output((*split_entry)[temp]))
 		return (false);
 	if (command->output)
 		free(command->output);
-	command->output = ft_strdup((*split_entry)[(*temp)]);
+	command->output = ft_strdup((*split_entry)[temp]);
 	if (command->append_mode == true)
 		command->append_mode = false;
-	ft_clear(split_entry, len, temp);
-	if (!(*split_entry)[(*temp)])
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[temp]);
+	if (!(*split_entry)[temp])
 		command->valid = false;
 	return (true);
 }
 
-bool	ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry)
+bool	ft_append(t_command *command, size_t temp, char ***split_entry)
 {
-	ft_clear(split_entry, len, temp);
-	while ((*split_entry)[(*temp)] && (*split_entry)[(*temp)][0]
-			&& (*split_entry)[(*temp)][0] == ' ')
-				ft_clear(split_entry, len, temp);
-	if (!open_append((*split_entry)[(*temp)]))
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[temp]);
+	if (!open_append((*split_entry)[temp]))
 		return (false);
 	if (command->output)
 		free(command->output);
-	command->output = ft_strdup((*split_entry)[(*temp)]);
+	command->output = ft_strdup((*split_entry)[temp]);
 	if (command->append_mode == false)
 		command->append_mode = true;
-	ft_clear(split_entry, len, temp);
+	(*split_entry) = ft_revRealloc((*split_entry), (*split_entry)[temp]);
 	return (true);
 }
