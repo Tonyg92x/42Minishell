@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 18:53:32 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/19 13:22:30 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,17 @@ bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 		command = new_command(command_q);
 		command_q->nb_command++;
 		length = how_much_node_in_command(&(*split_entry)[i]);
+		int y = 0;
+		while ((*split_entry)[y])
+			printf("%s\n", (*split_entry)[y++]);
 		if (!ft_redir(command, split_entry, &length, &i))
 			return (false);
+		y = 0;
+		while ((*split_entry)[y])
+			printf("%s\n", (*split_entry)[y++]);
 		parse_command(command_q, (*split_entry), &i, &length);
-		ft_expand_env(split_entry, command);
+		if (!expand_envar(command))
+			return (false);
 		if (!ft_parse_quotes(command, split_entry))
 			return (false);
 		if (command_q->nb_command > 0 && (*split_entry)[i])

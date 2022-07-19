@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 18:53:21 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/19 11:11:35 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,18 @@ bool		init_cmd(t_command *command, char **split_entry, size_t *i, size_t *length
 bool		builtins_exept(t_command_q *command_q, char **split_entry, size_t *i, size_t *length);
 void		parse_builtins(t_command *command, char **split_entry, size_t *i);
 void		ft_remove_space(char ***split_entry);
-void		ft_expand_env(char ***split_entry, t_command *command);
-bool		ft_ismetaenv(char c);
 void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
+
+//	Expand
+bool		expand_envar(t_command *command);
+bool		expand_node(char **string, t_command *command);
+bool		expand_var(char **string, int pos, t_command *command);
+void		expand_var_hd(char **string, size_t pos, t_command *command);
+bool		ft_ismetaenv(char c);
+size_t		varlen(char *string);
+bool		error_quotes(void);
+bool		is_closed(char *string, char c);
+
 
 //	Redirection
 bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
