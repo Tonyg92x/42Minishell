@@ -170,7 +170,7 @@ leak: obj $(NAME)
 	@valgrind --leak-check=full --trace-children=yes ./minishell
 
 setup:
-	@rm -rf LISCENSE images README.md
+	@rm -rf LICENSE images README.md
 
 ## ----- CLEAN COMMANDS ----- ##
 clean:

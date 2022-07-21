@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/19 13:22:30 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/21 16:05:09 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static bool	parsing_error(char **split_entry, size_t *i, size_t *length,
 	t_command_q *command_q)
 {
 	t_command	*command;
-	int			x;
 
-	x = 0;
 	command = last_command(command_q);
 	init_cmd(command, split_entry, i, length);
 	command->valid = false;
@@ -81,14 +79,8 @@ bool	analyse_entry(t_command_q *command_q, char ***split_entry, int nb_node)
 		command = new_command(command_q);
 		command_q->nb_command++;
 		length = how_much_node_in_command(&(*split_entry)[i]);
-		int y = 0;
-		while ((*split_entry)[y])
-			printf("%s\n", (*split_entry)[y++]);
 		if (!ft_redir(command, split_entry, &length, &i))
 			return (false);
-		y = 0;
-		while ((*split_entry)[y])
-			printf("%s\n", (*split_entry)[y++]);
 		parse_command(command_q, (*split_entry), &i, &length);
 		if (!expand_envar(command))
 			return (false);

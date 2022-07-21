@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/19 11:11:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/21 16:03:49 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <dirent.h>
+# include <wait.h>
 
 //	Engine
 void		routine_prompt(t_command_q *command_q);
