@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/19 07:30:18 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/22 08:06:15 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ PARSING_FILES		=					\
 			path.c						\
 			redirection.c				\
 			split_entry.c				\
-			quotes.c					\
 
 BUILTINS_FILES		=					\
 			builtins.c					\
@@ -83,6 +82,7 @@ MAIN_FILES			=					\
 			envp.c						\
 			ft_realloc.c				\
 			ft_revRealloc.c				\
+			ft_strdecale.c				\
 			main.c						\
 
 ENGINE_FILES		=					\

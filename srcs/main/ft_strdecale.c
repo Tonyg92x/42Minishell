@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdecale.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/22 07:20:06 by aguay            ###   ########.fr       */
+/*   Created: 2022/07/22 07:47:27 by aguay             #+#    #+#             */
+/*   Updated: 2022/07/22 07:51:14 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	init_command_queue(t_command_q *command_q, char **envp)
+char	*ft_strdecale(char *str)
 {
-	command_q->start = NULL;
-	command_q->nb_command = 0;
-	command_q->envp = envp_init(envp);
-}
+	size_t i;
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_command_q	command_q;
-
-	(void) argc;
-	(void) argv;
-	init_command_queue(&command_q, envp);
-	printf("\033[33mWelcome \033[31m%s\033[0m\n", getenv("USER"));
-	routine_prompt(&command_q);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		str[i] = str[i + 1];
+		i++;
+	}
+	return (str);
 }

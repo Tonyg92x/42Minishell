@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:13:41 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/19 13:17:02 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/22 08:21:36 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,28 +116,29 @@ static void	expand_hd(t_command *command)
 	}
 }
 
-static bool	expand_entry(t_command *command)
+static bool	expand_entry(char ***split_entry, t_command *command)
 {
 	size_t	index;
 
-	if (!command || !command->cmd || !command->cmd[0])
+	if (!split_entry || !(*split_entry) || !(*split_entry)[0])
 		return (false);
 	index = 0;
-	while (command->cmd[index])
+	while ((*split_entry)[index])
 	{
-		if (!expand_node(&command->cmd[index++], command))
+		if (!expand_node(&(*split_entry)[index], command))
 			return (false);
+		index++;
 	}
 	return (true);
 }
 
-bool	expand_envar(t_command *command)
+bool	expand_envar(t_command *command, char ***split_entry)
 {
 	if (!command)
 		return (false);
 	if (command->here_doc)
 		expand_hd(command);
-	else if (command->cmd)
-		return (expand_entry(command));
+	else
+		return (expand_entry(split_entry, command));
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 04:16:36 by roxannefour       #+#    #+#             */
-/*   Updated: 2022/07/12 18:45:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/22 07:11:18 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	**get_hd(char *delim)
 	{
 		free(line);
 		line = readline("> ");
-		if (ft_strnstr(line, delim, ft_strlen(delim)) != NULL)
+		if ((ft_strnstr(line, delim, ft_strlen(delim)) != NULL) && ft_strlen(line) == ft_strlen(delim))
 			break ;
 		retour = ft_realloc(retour, line);
 	}

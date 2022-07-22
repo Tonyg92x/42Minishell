@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/12 18:50:20 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/22 07:45:28 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,8 @@
 void	ft_clear(char ***split_entry, size_t *len, size_t *temp)
 {
 	(*split_entry) = ft_rev_realloc((*split_entry), (*split_entry)[(*temp)]);
-	(*len)--;
-}
-
-//	Analyse the link between 2 command
-void	analyse_link(t_command_q *command_q, char **split_entry, size_t *i)
-{
-	t_command	*command;
-
-	if (!command_q || !split_entry[(*i)])
-		return ;
-	if (split_entry[(*i)][0] == '|' || split_entry[(*i)][0] ==
-		'&' || split_entry[(*i)][0] == ';')
-	{
-		command = last_command(command_q);
-		if (split_entry[(*i) + 1] && (split_entry[(*i) + 1][0] == '|'
-			|| split_entry[(*i) + 1][0] == '&' || split_entry[(*i)
-				+ 1][0] == ';'))
-		{
-			command->link_next = ft_calloc(3, sizeof(char));
-			command->link_next[0] = split_entry[(*i)++][0];
-			command->link_next[1] = split_entry[(*i)++][0];
-			command->link_next[3] = '\0';
-		}	
-		else
-		{
-			command->link_next = ft_calloc(2, sizeof(char));
-			command->link_next[0] = split_entry[(*i)++][0];
-			command->link_next[1] = '\0';
-		}
-	}
+	if (len && *len)
+		(*len)--;
 }
 
 //	Look if the word is simply a whitespace

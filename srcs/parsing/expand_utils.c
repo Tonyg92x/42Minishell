@@ -6,11 +6,27 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 13:15:27 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/19 11:22:52 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/22 08:45:19 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_clear_var(char *str, size_t limit)
+{
+	size_t	i;
+	size_t	count;
+
+	if (!str)
+		return ;
+	i = 0;
+	count = 0;
+	while (str[i] && count < limit)
+	{
+		ft_strdecale(&str[i]);
+		count++;
+	}
+}
 
 bool	is_closed(char *string, char c)
 {
@@ -65,26 +81,27 @@ bool	expand_node(char **string, t_command *command)
 		{
 			if (!is_closed(&((*string)[index]), '\''))
 				return (error_quotes());
-			index++;
+			ft_strdecale(&(*string)[index]);
 			while ((*string)[index] && (*string)[index] != '\'')
 				index++;
-			index++;
+			ft_strdecale(&(*string)[index]);
 		}
 		else if ((*string)[index] == '"')
 		{
 			if (!is_closed(&((*string)[index]), '"'))
 				return (error_quotes());
-			index++;
+			ft_strdecale(&(*string)[index]);
 			while ((*string)[index] != '"')
 			{
 				if ((*string)[index] == '$')
 				{
-					if (!expand_var(string, ++index, command))
-						index = pos_quotes_end((*string));
+					if (!expand_var(&(*string), ++index, command))
+						ft_clear_var(&(*string)[index - 1], ft_strlen(&(*string)[index - 1]));
 					break ;
 				}
 				index++;
 			}
+			ft_strdecale(&(*string)[index]);
 		}
 		else if ((*string)[index] == '$')
 			expand_var(string, (int)++index, command);

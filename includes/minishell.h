@@ -6,7 +6,7 @@
 /*   By: aguay <aguay@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:38:26 by aguay             #+#    #+#             */
-/*   Updated: 2022/07/19 11:11:35 by aguay            ###   ########.fr       */
+/*   Updated: 2022/07/22 08:37:28 by aguay            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_remove_space(char ***split_entry);
 void		ft_clear(char ***split_entry, size_t *len, size_t *temp);
 
 //	Expand
-bool		expand_envar(t_command *command);
+bool		expand_envar(t_command *command, char ***split_entry);
 bool		expand_node(char **string, t_command *command);
 bool		expand_var(char **string, int pos, t_command *command);
 void		expand_var_hd(char **string, size_t pos, t_command *command);
@@ -52,7 +52,7 @@ bool		ft_ismetaenv(char c);
 size_t		varlen(char *string);
 bool		error_quotes(void);
 bool		is_closed(char *string, char c);
-
+void		ft_clear_var(char *str, size_t limit);
 
 //	Redirection
 bool		ft_redir(t_command *command, char ***split_entry, size_t *length, size_t *i);
@@ -61,9 +61,6 @@ bool		ft_input_hd(t_command *command, size_t *temp, size_t *len,char ***split_en
 bool		parse_output(t_command *command, char ***, size_t *len, size_t *i);
 bool		ft_append(t_command *command, size_t *temp, size_t *len, char ***split_entry);
 bool		ft_output(t_command *command, size_t *temp, size_t *len, char ***split_entry);
-
-//	Quotes
-bool		ft_parse_quotes(t_command *command, char ***split_entry);
 
 //	Utils
 bool		ft_is_metacharacter(char c);
@@ -90,7 +87,6 @@ t_command	*new_command(t_command_q *command_q);
 void		free_command(t_command	*command);
 size_t		index_to_path(char **envp);
 bool		path_is_valid(char *command, char **path, t_command_q *command_q);
-void		analyse_link(t_command_q *command_q, char ** split_entry, size_t *i);
 
 //	Environnement fonctions
 char		**envp_init(char **envp);
@@ -101,6 +97,7 @@ void		change_pwd(char *pwd, char **envp);
 //	Fonction pour libft ?
 char		**ft_realloc(char **strings, char *str);
 char		**ft_rev_realloc(char **array, void *ptr);
+char		*ft_strdecale(char *str);
 
 
 #endif
