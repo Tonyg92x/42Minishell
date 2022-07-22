@@ -6,7 +6,7 @@
 #    By: aguay <aguay@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by aguay             #+#    #+#              #
-#    Updated: 2022/07/22 08:06:15 by aguay            ###   ########.fr        #
+#    Updated: 2022/07/22 08:55:49 by aguay            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -170,7 +170,7 @@ leak: obj $(NAME)
 	@valgrind --leak-check=full --trace-children=yes ./minishell
 
 setup:
-	@rm -rf LISCENSE images README.md
+	@rm -rf LICENSE images README.md
 
 ## ----- CLEAN COMMANDS ----- ##
 clean:
